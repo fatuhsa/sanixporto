@@ -1,0 +1,57 @@
+import React from "react";
+import ProjectItem from "./ProjectItem";
+import image from "../../public/images.png"; // Gambar lokal diimpor dengan benar
+
+const projects = [
+  {
+    title: "Ceki",
+    description: "A calculator for Ceki",
+    link: "https://ceki.vercel.app/",
+    thumbnail: image // Menggunakan gambar lokal
+  },
+  {
+    title: "Age calculator",
+    description: "How long have you lived?",
+    link: "#",
+    thumbnail: "https://via.placeholder.com/300x300?text=Age+calculator"
+  },
+  {
+    title: "Telegram Bot",
+    description: "A simple bot for Telegram",
+    link: "#",
+    thumbnail: "https://via.placeholder.com/300x300?text=Telegram+Bot"
+  },
+  {
+    title: "Simple Calculator",
+    description: "A basic calculator app",
+    link: "#",
+    thumbnail: "https://via.placeholder.com/300x300?text=Calculator"
+  }
+];
+
+const Projects = () => {
+  return (
+    <div
+      id="projects"
+      className="project min-h-screen w-full flex flex-col items-center justify-center bg-gray-800 py-16"
+    >
+      <div className="lists text-center p-6 bg-opacity-10 bg-white rounded-lg shadow-lg w-11/12 md:w-3/4">
+        <p className="font-bold text-3xl mb-6">Projects</p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {projects.map((project, index) => (
+            <div key={index} className="flex justify-center">
+              <ProjectItem
+                title={project.title}
+                description={project.description}
+                link={project.link}
+                thumbnail={project.thumbnail}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Projects;
