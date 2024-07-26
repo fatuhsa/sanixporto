@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p>&copy; 2024 Fatuh Sani Ansori. Made with♥ by Sanix.</p>
+          <p>&copy; Made with♥ by SaniX </p>
         </div>
       </div>
     </footer>
