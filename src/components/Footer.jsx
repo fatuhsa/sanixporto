@@ -1,5 +1,10 @@
-import React from 'react';
-import { FaFacebook, FaInstagram, FaYoutube, FaTelegramPlane } from 'react-icons/fa';
+import React from "react";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaYoutube,
+  FaTelegramPlane
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -9,7 +14,10 @@ const Footer = () => {
           <h4 className="font-bold text-xl mb-2">Contact Me</h4>
           <p>
             Email:{" "}
-            <a href="mailto:sanioriginal@gmail.com" className="text-blue-400 hover:underline">
+            <a
+              href="mailto:sanioriginal@gmail.com"
+              className="text-blue-400 hover:underline"
+            >
               sanioriginal@gmail.com
             </a>
           </p>
@@ -17,22 +25,38 @@ const Footer = () => {
         <div className="mb-4">
           <h4 className="font-bold text-xl mb-2">Follow Me</h4>
           <div className="flex justify-center space-x-6">
-            <a href="https://facebook.com/your-username" className="text-blue-400 hover:text-blue-500" aria-label="Facebook">
+            <a
+              href="https://www.facebook.com/sanixitd"
+              className="text-blue-400 hover:text-blue-500"
+              aria-label="Facebook"
+            >
               <FaFacebook size={24} />
             </a>
-            <a href="https://instagram.com/your-username" className="text-blue-400 hover:text-blue-500" aria-label="Instagram">
+            <a
+              href="https://www.instagram.com/vinsmokesani22"
+              className="text-blue-400 hover:text-blue-500"
+              aria-label="Instagram"
+            >
               <FaInstagram size={24} />
             </a>
-            <a href="https://youtube.com/your-username" className="text-blue-400 hover:text-blue-500" aria-label="YouTube">
+            <a
+              href="https://youtube.com/@sanimonid"
+              className="text-blue-400 hover:text-blue-500"
+              aria-label="YouTube"
+            >
               <FaYoutube size={24} />
             </a>
-            <a href="https://telegram.me/your-username" className="text-blue-400 hover:text-blue-500" aria-label="Telegram">
+            <a
+              href="https://t.me/suradirajayadiningrat"
+              className="text-blue-400 hover:text-blue-500"
+              aria-label="Telegram"
+            >
               <FaTelegramPlane size={24} />
             </a>
           </div>
         </div>
         <div>
-          <p>&copy; 2024 Fatuh Sani Ansori. All Rights Reserved.</p>
+          <p>&copy; 2024 Fatuh Sani Ansori. Made with♥ by Sanix.</p>
         </div>
       </div>
     </footer>
