@@ -1,61 +1,51 @@
-import React, { Suspense, lazy } from "react";
-import image1 from "/images.png";
-import image2 from "/images2.png";
-import image3 from "/images3.png";
+import { Suspense, lazy } from "react";
+import { projects } from "../data/portfolioData";
 
 const ProjectItem = lazy(() => import("./ProjectItem"));
 
-const projects = [
-  {
-    title: "Ceki",
-    description: "A calculator for Ceki",
-    link: "https://ceki.vercel.app/",
-    thumbnail: image1
-  },
-  {
-    title: "Age calculator",
-    description: "How long have you lived?",
-    link: "https://agelatoria.vercel.app/",
-    thumbnail: image3
-  },
-  {
-    title: "Telegram Bot",
-    description: "A simple bot for Telegram",
-    link: "https://github.com/fatuhsa/sanix-bot",
-    thumbnail: "https://via.placeholder.com/300x300?text=Telegram+Bot"
-  },
-  {
-    title: "Simple Calculator",
-    description: "A basic calculator app",
-    link: "https://sanix-calculator.vercel.app/",
-    thumbnail: image2
-  }
-];
-
 const Projects = () => {
   return (
-    <div
+    <section
       id="projects"
-      className="project min-h-screen w-full flex flex-col items-center justify-center bg-black py-16 border-b-2"
+      className="min-h-screen w-full flex flex-col items-center justify-center bg-black py-32"
     >
-      <div className="lists text-center p-6 bg-opacity-10 bg-white rounded-lg shadow-lg w-11/12 md:w-3/4">
-        <p className="font-bold text-3xl mb-6">Projects</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Suspense fallback={<div>Loading...</div>}>
+      <div className="content-container">
+        <header className="mb-20">
+          <p className="press-start-2p-regular text-[10px] text-gray-500 mb-4 tracking-widest uppercase">
+            &gt; Selected Works
+          </p>
+          <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none">PROJECTS</h2>
+          <div className="h-1 w-24 bg-white/10 mt-8"></div>
+        </header>
+        
+        <div className="flex flex-col border-t border-white/10">
+          <Suspense fallback={<div className="py-20 text-gray-500 animate-pulse font-mono tracking-widest uppercase text-xs">Synchronizing...</div>}>
             {projects.map((project, index) => (
-              <div key={index} className="flex justify-center">
-                <ProjectItem
-                  title={project.title}
-                  description={project.description}
-                  link={project.link}
-                  thumbnail={project.thumbnail}
-                />
-              </div>
+              <ProjectItem
+                key={index}
+                title={project.title}
+                description={project.description}
+                link={project.link}
+                tags={project.tags}
+                icon={project.icon}
+              />
             ))}
           </Suspense>
         </div>
+        
+        <div className="mt-20">
+          <a 
+            href="https://github.com/fatuhsa" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gray-500 hover:text-white transition-all"
+          >
+            <span>Explore all repositories</span>
+            <div className="w-12 h-px bg-gray-500 group-hover:w-20 group-hover:bg-white transition-all duration-500"></div>
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

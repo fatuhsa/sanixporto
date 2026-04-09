@@ -1,39 +1,52 @@
-import React from "react";
+import { personalInfo, socialLinks } from "../data/portfolioData";
 
 const Introduction = () => {
   return (
-    <div
+    <section
       id="intro"
-      className="main min-h-screen w-full flex flex-col items-center justify-center border-b-2"
+      className="min-h-screen w-full flex flex-col items-center justify-center pt-24"
     >
-      <p className="press-start-2p-regular text-2xl">Welcome!</p>
-      <div className="container flex items-center justify-center">
-        <div className="roboto-thin m-3 text-left p-6 bg-opacity-10 bg-white rounded-lg shadow-lg">
-          <p className="text-2xl">Hello, I'm</p>
-          <p className="font-sans font-bold text-4xl">Fatuh Sani Ansori</p>
-          <p className="text-xl mb-4">Web Developer</p>
-          <p className="my-2 text-lg">
-            I am a Computer Science student and a passionate tech enthusiast.
-            Welcome to my portfolio website where I showcase my creations,
-            projects, and anything else I want to share with the world.
-          </p>
-          <div className="mt-4 flex gap-4">
-            <a
-              href="#contact"
-              className="bg-white text-black p-3 rounded-lg hover:bg-black hover:text-white hover:ring hover:ring-white font-bold transition duration-300"
-            >
-              Follow me
-            </a>
-            <a
-              href="https://github.com/fatuhsa"
-              className="bg-black text-white p-3 rounded-lg hover:bg-white hover:text-black hover:ring hover:ring-white font-bold transition duration-300"
-            >
-              GitHub
-            </a>
+      <div className="content-container">
+        <p className="press-start-2p-regular text-gray-500 text-[10px] md:text-xs mb-8 animate-pulse tracking-widest uppercase">
+          &gt; Welcome to my space :D
+        </p>
+        
+        <div className="glass-effect p-8 md:p-16 rounded-3xl shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+            <span className="text-9xl font-bold tracking-tighter">SANI</span>
+          </div>
+          
+          <div className="relative z-10">
+            <div className="roboto-thin mb-4 text-gray-400 uppercase tracking-widest text-xs">Principal Developer</div>
+            <h1 className="text-6xl md:text-8xl font-bold mb-4 tracking-tighter leading-none">
+              {personalInfo.name.split(' ')[0]}<br/>
+              <span className="text-gray-500">{personalInfo.name.split(' ').slice(1).join(' ')}</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-12 max-w-2xl font-light">
+              {personalInfo.description}
+            </p>
+            
+            <div className="flex flex-wrap gap-6">
+              <a
+                href="#contact"
+                className="px-10 py-4 bg-white text-black rounded-full hover:bg-black hover:text-white ring-1 ring-white transition-all duration-500 font-bold uppercase tracking-widest text-xs"
+              >
+                Hire me
+              </a>
+              <a
+                href={socialLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-10 py-4 bg-transparent text-white rounded-full ring-1 ring-white/20 hover:ring-white transition-all duration-500 font-bold uppercase tracking-widest text-xs"
+              >
+                Repositories
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

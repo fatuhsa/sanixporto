@@ -1,19 +1,24 @@
-import React from "react";
 import { HelmetProvider } from "react-helmet-async";
-import Header from "./components/Header";
+import SEO from "./components/SEO";
 import Introduction from "./components/Introduction";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import { personalInfo } from "./data/portfolioData";
 
 function App() {
   return (
     <HelmetProvider>
-      <div className="bg-black text-white select-none min-h-screen flex flex-col justify-center items-center">
+      <div className="bg-black text-white select-none min-h-screen">
+        <SEO 
+          title={`${personalInfo.name} | ${personalInfo.role}`}
+          description={personalInfo.description}
+        />
         <Navbar />
-        <Header />
-        <Introduction />
-        <Projects />
+        <main>
+          <Introduction />
+          <Projects />
+        </main>
         <Footer />
       </div>
     </HelmetProvider>
