@@ -32,62 +32,71 @@ export const projects = [
     description: "A specialized calculator designed for the Ceki card game, streamlining score tracking.",
     link: "https://ceki.vercel.app/",
     tags: ["Web", "Tool"],
-    icon: FaGamepad
+    icon: FaGamepad,
+    gridSize: "md"
   },
   {
     title: "Age Calculator",
     description: "An interactive tool to calculate exactly how long you have lived in years, months, and days.",
     link: "https://agelatoria.vercel.app/",
     tags: ["Utility", "JS"],
-    icon: FaCalculator
+    icon: FaCalculator,
+    gridSize: "sm"
   },
   {
     title: "Telegram Bot",
     description: "A feature-rich automated bot for Telegram built with modern Node.js practices.",
     link: "https://github.com/fatuhsa/sanix-bot",
     tags: ["Bot", "Node.js"],
-    icon: SiTelegram
+    icon: SiTelegram,
+    gridSize: "sm"
   },
   {
     title: "Simple Calculator",
     description: "A clean, responsive basic calculator app for quick daily computations.",
     link: "https://sanix-calculator.vercel.app/",
     tags: ["Simple", "UI"],
-    icon: SiJavascript
+    icon: SiJavascript,
+    gridSize: "sm"
   },
   {
     title: "KASIR-LAUNDRY",
     description: "Sistem kasir laundry digital untuk mempermudah manajemen bisnis.",
     link: "https://github.com/fatuhsa/KASIR-LAUNDRY",
     tags: ["Business", "CRUD"],
-    icon: SiJavascript
+    icon: SiJavascript,
+    gridSize: "sm"
   },
   {
     title: "SANIX-POKEDEX",
     description: "A digital encyclopedia for Pokémon enthusiasts.",
     link: "https://github.com/fatuhsa/SANIX-POKEDEX",
     tags: ["Svelte", "API"],
-    icon: SiSvelte
+    icon: SiSvelte,
+    gridSize: "md"
   },
   {
     title: "AI-CHAF",
     description: "An AI-powered project for interactive chat and assistance.",
     link: "https://github.com/fatuhsa/AI-CHAF",
     tags: ["AI", "Chat"],
-    icon: SiOpenai
+    icon: SiOpenai,
+    gridSize: "sm"
   },
   {
     title: "TEMPLATE-GALER",
     description: "A specialized template for gallery-based web applications.",
     link: "https://github.com/fatuhsa/TEMPLATE-GALER",
     tags: ["Template", "UI"],
-    icon: SiTailwindcss
+    icon: SiTailwindcss,
+    gridSize: "sm"
   },
   {
     title: "FZYXSNX",
     description: "A unique personal project showcasing experimental features.",
     link: "https://github.com/fatuhsa/FZYXSNX",
     tags: ["Personal", "Experimental"],
-    icon: FaCode
+    icon: FaCode,
+    gridSize: "sm"
   }
 ];
