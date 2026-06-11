@@ -2,14 +2,19 @@ import {
   SiSvelte, 
   SiJavascript, 
   SiTelegram, 
-  SiNodedotjs, 
-  SiPython, 
-  SiTailwindcss, 
-  SiVite,
-  SiWhatsapp,
-  SiOpenai
+  SiPython,
 } from "react-icons/si";
-import { FaCalculator, FaTools, FaCode, FaGamepad } from "react-icons/fa";
+import { 
+  FaCalculator, 
+  FaCode, 
+  FaGamepad, 
+  FaSkull, 
+  FaCashRegister, 
+  FaBroadcastTower, 
+  FaRobot, 
+  FaSearch,
+  FaTerminal
+} from "react-icons/fa";
 
 export const personalInfo = {
   name: "Fatuh Sani Ansori",
@@ -26,77 +31,113 @@ export const socialLinks = {
   telegram: "https://t.me/suradirajayadiningrat",
 };
 
+export const skills = [
+  { name: "Svelte", icon: SiSvelte },
+  { name: "React", icon: FaCode },
+  { name: "Node.js", icon: SiJavascript },
+  { name: "Python", icon: SiPython },
+  { name: "Tailwind", icon: FaCode },
+];
+
 export const projects = [
   {
-    title: "Ceki",
-    description: "A specialized calculator designed for the Ceki card game, streamlining score tracking.",
-    link: "https://ceki.vercel.app/",
-    tags: ["Web", "Tool"],
+    title: "YGO",
+    description: "A specialized application for Yu-Gi-Oh! card mechanics and deck management. It features a comprehensive database of cards and interactive deck-building tools.",
+    category: "Game",
+    techStack: ["TypeScript", "React"],
+    liveUrl: "#",
+    sourceUrl: "https://github.com/fatuhsa/YGO",
     icon: FaGamepad,
     gridSize: "md"
   },
   {
-    title: "Age Calculator",
-    description: "An interactive tool to calculate exactly how long you have lived in years, months, and days.",
-    link: "https://agelatoria.vercel.app/",
-    tags: ["Utility", "JS"],
-    icon: FaCalculator,
-    gridSize: "sm"
+    title: "DUNGEON-BATTLER",
+    description: "An immersive dungeon crawler game experience with procedural generation and turn-based combat. Explore dark dungeons and fight various monsters to survive.",
+    category: "Game",
+    techStack: ["TypeScript", "Canvas"],
+    liveUrl: "#",
+    sourceUrl: "https://github.com/fatuhsa/DUNGEON-BATTLER",
+    icon: FaSkull,
+    gridSize: "md"
   },
   {
-    title: "Telegram Bot",
-    description: "A feature-rich automated bot for Telegram built with modern Node.js practices.",
-    link: "https://github.com/fatuhsa/sanix-bot",
-    tags: ["Bot", "Node.js"],
-    icon: SiTelegram,
-    gridSize: "sm"
-  },
-  {
-    title: "Simple Calculator",
-    description: "A clean, responsive basic calculator app for quick daily computations.",
-    link: "https://sanix-calculator.vercel.app/",
-    tags: ["Simple", "UI"],
-    icon: SiJavascript,
-    gridSize: "sm"
-  },
-  {
-    title: "KASIR-LAUNDRY",
-    description: "Sistem kasir laundry digital untuk mempermudah manajemen bisnis.",
-    link: "https://github.com/fatuhsa/KASIR-LAUNDRY",
-    tags: ["Business", "CRUD"],
-    icon: SiJavascript,
-    gridSize: "sm"
+    title: "ALL-POS",
+    description: "A modern Point of Sale system designed for small to medium businesses. It includes inventory tracking, sales reporting, and employee management features.",
+    category: "Web App",
+    techStack: ["TypeScript", "React", "Node.js"],
+    liveUrl: "#",
+    sourceUrl: "https://github.com/fatuhsa/ALL-POS",
+    icon: FaCashRegister,
+    gridSize: "md"
   },
   {
     title: "SANIX-POKEDEX",
-    description: "A digital encyclopedia for Pokémon enthusiasts.",
-    link: "https://github.com/fatuhsa/SANIX-POKEDEX",
-    tags: ["Svelte", "API"],
+    description: "A digital encyclopedia for Pokémon enthusiasts using the PokeAPI. Features detailed stats, move sets, and evolution chains for all known Pokémon.",
+    category: "Web App",
+    techStack: ["Svelte", "Tailwind"],
+    liveUrl: "#",
+    sourceUrl: "https://github.com/fatuhsa/SANIX-POKEDEX",
     icon: SiSvelte,
     gridSize: "md"
   },
   {
-    title: "AI-CHAF",
-    description: "An AI-powered project for interactive chat and assistance.",
-    link: "https://github.com/fatuhsa/AI-CHAF",
-    tags: ["AI", "Chat"],
-    icon: SiOpenai,
+    title: "STREAMFLOW",
+    description: "A streamlined platform to manage live streaming via VPS. It automates server setup and broadcast management for content creators.",
+    category: "Tool",
+    techStack: ["EJS", "Node.js", "Express"],
+    liveUrl: "#",
+    sourceUrl: "https://github.com/fatuhsa/STREAMFLOW",
+    icon: FaBroadcastTower,
     gridSize: "sm"
   },
   {
-    title: "TEMPLATE-GALER",
-    description: "A specialized template for gallery-based web applications.",
-    link: "https://github.com/fatuhsa/TEMPLATE-GALER",
-    tags: ["Template", "UI"],
-    icon: SiTailwindcss,
+    title: "ELAINA-MULTIDEVICE",
+    description: "A versatile multi-device automated bot designed for messaging platforms. It supports various commands, automation scripts, and media processing.",
+    category: "Utility",
+    techStack: ["JavaScript", "Node.js"],
+    liveUrl: "#",
+    sourceUrl: "https://github.com/fatuhsa/ELAINA-MULTIDEVICE",
+    icon: FaRobot,
     gridSize: "sm"
   },
   {
-    title: "FZYXSNX",
-    description: "A unique personal project showcasing experimental features.",
-    link: "https://github.com/fatuhsa/FZYXSNX",
-    tags: ["Personal", "Experimental"],
-    icon: FaCode,
+    title: "CEKI",
+    description: "A specialized calculator specifically built for the Ceki card game. It helps players track scores and manage game rounds efficiently.",
+    category: "Tool",
+    techStack: ["JavaScript", "React"],
+    liveUrl: "https://ceki.vercel.app/",
+    sourceUrl: "#",
+    icon: FaGamepad,
+    gridSize: "sm"
+  },
+  {
+    title: "ENDPOINT_FINDER",
+    description: "A Python-based tool for discovering and managing API endpoints during development. It scans codebases and documents available routes automatically.",
+    category: "Tool",
+    techStack: ["Python"],
+    liveUrl: "#",
+    sourceUrl: "https://github.com/fatuhsa/ENDPOINT_FINDER",
+    icon: FaSearch,
+    gridSize: "sm"
+  },
+  {
+    title: "KASIR-LAUNDRY",
+    description: "A digital laundry management system that simplifies the cashier process. It tracks orders, customer history, and payment status in real-time.",
+    category: "Web App",
+    techStack: ["JavaScript", "Node.js"],
+    liveUrl: "#",
+    sourceUrl: "https://github.com/fatuhsa/KASIR-LAUNDRY",
+    icon: SiJavascript,
+    gridSize: "sm"
+  },
+  {
+    title: "SANIX-CALCULATOR",
+    description: "A clean and responsive calculator application with a modern UI. It supports basic arithmetic operations and maintains a history of calculations.",
+    category: "Utility",
+    techStack: ["JavaScript", "HTML", "CSS"],
+    liveUrl: "https://sanix-calculator.vercel.app/",
+    sourceUrl: "#",
+    icon: FaCalculator,
     gridSize: "sm"
   }
 ];
