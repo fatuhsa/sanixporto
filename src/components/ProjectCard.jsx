@@ -1,4 +1,5 @@
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import PropTypes from "prop-types";
 import BentoCard from "./BentoCard";
 
 export default function ProjectCard({ project }) {
@@ -9,7 +10,7 @@ export default function ProjectCard({ project }) {
     <BentoCard className={`${spanClass} flex flex-col justify-between group`}>
       <div className="flex justify-between items-start mb-4">
         <div className="p-3 bg-zinc-800 rounded-2xl group-hover:bg-zinc-700 transition-colors">
-          <Icon className="text-2xl" />
+          {Icon && <Icon className="text-2xl" />}
         </div>
         <div className="flex gap-3">
           {project.sourceUrl && project.sourceUrl !== "#" && (
@@ -55,3 +56,15 @@ export default function ProjectCard({ project }) {
     </BentoCard>
   );
 }
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    gridSize: PropTypes.string,
+    icon: PropTypes.elementType,
+    sourceUrl: PropTypes.string,
+    liveUrl: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    techStack: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
