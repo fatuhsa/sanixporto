@@ -1,9 +1,9 @@
 import BentoCard from "./BentoCard";
 import { skills } from "../data/portfolioData";
 
-export default function SkillsCard() {
+export default function SkillsCard(props) {
   return (
-    <BentoCard className="md:col-span-2 md:row-span-1 flex flex-col justify-between">
+    <BentoCard {...props} className={`md:col-span-2 md:row-span-1 flex flex-col justify-between ${props.className || ""}`}>
       <div>
         <h3 className="text-xs uppercase text-zinc-500 font-semibold tracking-wider mb-4">
           Tech Stack

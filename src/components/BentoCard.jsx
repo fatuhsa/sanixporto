@@ -1,6 +1,9 @@
-export default function BentoCard({ children, className = "" }) {
+export default function BentoCard({ children, className = "", ...props }) {
   return (
-    <div className={`bg-zinc-900 border border-zinc-800 rounded-3xl p-6 transition-all duration-300 hover:border-zinc-700 hover:scale-[1.01] ${className}`}>
+    <div 
+      className={`bg-zinc-900 border border-zinc-800 rounded-3xl p-6 transition-all duration-300 hover:border-zinc-700 hover:scale-[1.01] ${className}`}
+      {...props}
+    >
       {children}
     </div>
   );

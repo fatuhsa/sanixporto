@@ -2,9 +2,9 @@ import BentoCard from "./BentoCard";
 import { personalInfo } from "../data/portfolioData";
 import { FaFileDownload } from "react-icons/fa";
 
-export default function ProfileCard() {
+export default function ProfileCard(props) {
   return (
-    <BentoCard className="md:col-span-2 md:row-span-2 p-8 flex flex-col justify-between group overflow-hidden relative">
+    <BentoCard {...props} className={`md:col-span-2 md:row-span-2 p-8 flex flex-col justify-between group overflow-hidden relative ${props.className || ""}`}>
       <div className="z-10">
         <span className="text-blue-500 font-bold tracking-widest uppercase text-sm mb-2 block">
           {personalInfo.role}
@@ -22,7 +22,9 @@ export default function ProfileCard() {
 
       <div className="z-10 flex flex-wrap gap-4">
         <a
-          href="#"
+          href="https://drive.google.com/file/d/19WJloNPi9ZwIyCgdgMyUrAbQvY3dlSmq/view?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-zinc-200 transition-colors"
         >
           <FaFileDownload />

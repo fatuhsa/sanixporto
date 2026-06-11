@@ -1,19 +1,19 @@
 import { 
   SiSvelte, 
   SiJavascript, 
-  SiTelegram, 
   SiPython,
+  SiTailwindcss,
+  SiNodedotjs,
 } from "react-icons/si";
 import { 
   FaCalculator, 
-  FaCode, 
   FaGamepad, 
   FaSkull, 
   FaCashRegister, 
   FaBroadcastTower, 
   FaRobot, 
   FaSearch,
-  FaTerminal
+  FaReact
 } from "react-icons/fa";
 
 export const personalInfo = {
@@ -33,10 +33,10 @@ export const socialLinks = {
 
 export const skills = [
   { name: "Svelte", icon: SiSvelte },
-  { name: "React", icon: FaCode },
-  { name: "Node.js", icon: SiJavascript },
+  { name: "React", icon: FaReact },
+  { name: "Node.js", icon: SiNodedotjs },
   { name: "Python", icon: SiPython },
-  { name: "Tailwind", icon: FaCode },
+  { name: "Tailwind", icon: SiTailwindcss },
 ];
 
 export const projects = [
