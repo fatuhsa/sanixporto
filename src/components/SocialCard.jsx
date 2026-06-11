@@ -1,6 +1,6 @@
 import BentoCard from "./BentoCard";
 import { socialLinks } from "../data/portfolioData";
-import { FaGithub, FaInstagram, FaFacebook, FaYoutube, FaTelegram } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaTelegram } from "react-icons/fa";
 
 export default function SocialCard() {
   return (
