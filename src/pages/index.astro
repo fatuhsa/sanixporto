@@ -32,13 +32,13 @@ const groupedProjects = visibleProjects.reduce((acc, project) => {
       <SocialCard />
     </BentoGrid>
 
-    <div id="projects" class="max-w-7xl mx-auto px-4 pb-12">
+    <div id="projects" class="max-w-7xl mx-auto px-5 md:px-6 pb-12">
       {
         categories.map((category) =>
           groupedProjects[category] ? (
             <section class="pt-12">
               <div class="flex items-center gap-4 px-2 pb-6">
-                <h2 class="text-xl font-bold text-zinc-400 uppercase tracking-[0.3em]">
+                <h2 class="text-xl font-bold text-zinc-400 uppercase tracking-[0.15em]">
                   {category}s
                 </h2>
                 <div class="h-px bg-zinc-800/80 grow"></div>

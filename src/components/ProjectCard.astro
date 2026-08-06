@@ -8,52 +8,51 @@ const featured = project.gridSize === "md";
 
 const hasSource = project.sourceUrl && project.sourceUrl !== "#";
 const hasLive = project.liveUrl && project.liveUrl !== "#";
-const primaryUrl = hasLive ? project.liveUrl : project.sourceUrl;
-const primaryLabel = hasLive ? "Live Demo" : "View Source";
-const primaryIcon = hasLive
-  ? "fa6-solid:arrow-up-right-from-square"
-  : "fa6-brands:github";
+
+const palettes = [
+  { from: "from-blue-600/40", via: "via-purple-600/30", to: "to-zinc-900/0" },
+  { from: "from-emerald-600/40", via: "via-teal-600/30", to: "to-zinc-900/0" },
+  { from: "from-orange-600/40", via: "via-amber-600/30", to: "to-zinc-900/0" },
+  { from: "from-rose-600/40", via: "via-pink-600/30", to: "to-zinc-900/0" },
+];
+
+let hash = 0;
+for (const ch of project.title) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+const palette = palettes[hash % palettes.length];
 ---
 
 <BentoCard
   class={`flex flex-col justify-between group overflow-hidden relative ${featured ? "md:p-8" : ""}`}
 >
-  <div class="z-10 flex justify-between items-start mb-5">
-    <div
-      class:list={[
-        "p-3 rounded-2xl transition-colors",
-        featured
-          ? "bg-blue-500/15 text-blue-400 group-hover:bg-blue-500/25 group-hover:text-blue-300"
-          : "bg-zinc-800 text-zinc-300 group-hover:bg-zinc-700 group-hover:text-white",
-      ]}
-    >
-      {project.icon && <Icon name={project.icon} class="w-6 h-6" />}
+  <div
+    class:list={[
+      "z-10 relative rounded-2xl overflow-hidden mb-5 border border-zinc-800/60 bg-gradient-to-br",
+      palette.from,
+      palette.via,
+      palette.to,
+      featured ? "h-44 md:h-52" : "h-36",
+    ]}
+  >
+    <div class="absolute top-0 inset-x-0 flex items-center gap-1.5 px-3 py-2.5 bg-zinc-950/70 border-b border-zinc-800/60">
+      <span class="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+      <span class="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+      <span class="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+      <span class="ml-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500 truncate">
+        {project.title.toLowerCase()}.app
+      </span>
     </div>
-
-    <div class="flex items-center gap-2">
-      {hasSource && (
-        <a
-          href={project.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all focus-visible:ring-2 focus-visible:ring-blue-500 outline-none"
-          title="View Source"
-          aria-label="View Source"
+    <div
+      class="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+    >
+      {project.icon && (
+        <div
+          class:list={[
+            "p-4 md:p-5 rounded-2xl bg-zinc-950/50 border border-zinc-800/60",
+            featured ? "text-blue-400" : "text-zinc-300",
+          ]}
         >
-          <Icon name="fa6-brands:github" class="w-5 h-5" />
-        </a>
-      )}
-      {hasLive && (
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all focus-visible:ring-2 focus-visible:ring-blue-500 outline-none"
-          title="Live Demo"
-          aria-label="Live Demo"
-        >
-          <Icon name="fa6-solid:arrow-up-right-from-square" class="w-[18px] h-[18px]" />
-        </a>
+          <Icon name={project.icon} class={featured ? "w-10 h-10 md:w-12 md:h-12" : "w-8 h-8"} />
+        </div>
       )}
     </div>
   </div>
@@ -90,17 +89,30 @@ const primaryIcon = hasLive
         </span>
       ))}
     </div>
-    {primaryUrl && (
-      <a
-        href={primaryUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white hover:bg-blue-500 transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-none"
-      >
-        {primaryLabel}
-        <Icon name={primaryIcon} class="w-3.5 h-3.5" />
-      </a>
-    )}
+    <div class="flex items-center gap-2">
+      {hasLive && (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white hover:bg-blue-500 transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-none"
+        >
+          Live Demo
+          <Icon name="fa6-solid:arrow-up-right-from-square" class="w-3.5 h-3.5" />
+        </a>
+      )}
+      {hasSource && (
+        <a
+          href={project.sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-zinc-800 text-zinc-300 border border-zinc-700 hover:bg-zinc-700 hover:text-white transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-none"
+        >
+          <Icon name="fa6-brands:github" class="w-3.5 h-3.5" />
+          Source
+        </a>
+      )}
+    </div>
   </div>
 
   <div class="absolute -bottom-10 -right-10 w-44 h-44 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-colors pointer-events-none" />

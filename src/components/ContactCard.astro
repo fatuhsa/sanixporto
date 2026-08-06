@@ -1,23 +1,49 @@
 ---
 import { Icon } from "astro-icon/components";
-import { personalInfo } from "../data/portfolioData";
+import { personalInfo, socialLinks } from "../data/portfolioData";
 import BentoCard from "./BentoCard.astro";
 
 const { id } = Astro.props;
+
+const channels = [
+  {
+    name: "Email",
+    value: personalInfo.email,
+    href: `mailto:${personalInfo.email}`,
+    icon: "fa6-solid:envelope",
+  },
+  {
+    name: "Telegram",
+    value: "suradirajayadiningrat",
+    href: socialLinks.telegram,
+    icon: "fa6-brands:telegram",
+  },
+];
 ---
 
 <BentoCard id={id} class="md:col-span-1 md:row-span-1 flex flex-col justify-between">
   <div>
     <h3 class="text-2xl font-bold text-white mb-2">Let's talk?</h3>
-    <p class="text-zinc-400 text-sm leading-relaxed">
+    <p class="text-zinc-400 text-sm leading-relaxed mb-5">
       Have a project in mind or just want to say hi?
     </p>
+    <div class="flex flex-col gap-2.5">
+      {channels.map((channel) => (
+        <a
+          href={channel.href}
+          target={channel.href.startsWith("http") ? "_blank" : undefined}
+          rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          class="flex items-center gap-3 px-3.5 py-3 rounded-xl bg-zinc-800/80 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:border-zinc-700 hover:text-white transition-all duration-300 focus-visible:ring-2 focus-visible:ring-blue-500 outline-none"
+        >
+          <Icon name={channel.icon} class="w-5 h-5 text-blue-400 shrink-0" />
+          <span class="min-w-0 flex flex-col leading-tight">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+              {channel.name}
+            </span>
+            <span class="text-sm font-medium truncate">{channel.value}</span>
+          </span>
+        </a>
+      ))}
+    </div>
   </div>
-  <a
-    href={`mailto:${personalInfo.email}`}
-    class="w-full flex items-center justify-center gap-2 bg-white text-black py-3 rounded-xl font-bold hover:bg-zinc-200 transition-colors mt-4"
-  >
-    <Icon name="fa6-solid:paper-plane" class="w-4 h-4" />
-    Contact Me
-  </a>
 </BentoCard>

@@ -14,10 +14,15 @@ const { id } = Astro.props;
     <div class="flex flex-wrap gap-3">
       {skills.map((skill) => (
         <div
-          class="flex items-center gap-2 px-3 py-2 bg-zinc-800 rounded-xl border border-transparent hover:border-zinc-700 transition-all group"
+          class="flex items-center gap-2.5 px-3.5 py-2 bg-zinc-800 rounded-xl border border-transparent hover:border-zinc-600/60 transition-all duration-300 hover:-translate-y-0.5 group cursor-default"
+          title={skill.name}
         >
-          <Icon name={skill.icon} class="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
-          <span class="text-sm font-medium text-zinc-300 group-hover:text-white">
+          <Icon
+            name={skill.icon}
+            class="w-6 h-6 transition-transform duration-300 group-hover:scale-110"
+            style={`color: ${skill.color}`}
+          />
+          <span class="text-sm font-medium text-zinc-300 group-hover:text-white transition-colors">
             {skill.name}
           </span>
         </div>

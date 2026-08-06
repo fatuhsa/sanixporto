@@ -14,11 +14,11 @@ export const socialLinks = {
 };
 
 export const skills = [
-  { name: "Svelte", icon: "simple-icons:svelte" },
-  { name: "React", icon: "fa6-brands:react" },
-  { name: "Node.js", icon: "simple-icons:nodedotjs" },
-  { name: "Python", icon: "simple-icons:python" },
-  { name: "Tailwind", icon: "simple-icons:tailwindcss" },
+  { name: "Svelte", icon: "simple-icons:svelte", color: "#ff3e00" },
+  { name: "React", icon: "fa6-brands:react", color: "#61dafb" },
+  { name: "Node.js", icon: "simple-icons:nodedotjs", color: "#5fa04e" },
+  { name: "Python", icon: "simple-icons:python", color: "#e1b437" },
+  { name: "Tailwind", icon: "simple-icons:tailwindcss", color: "#38bdf8" },
 ];
 
 export const projects = [
