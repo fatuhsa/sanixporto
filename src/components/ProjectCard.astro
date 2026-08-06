@@ -26,7 +26,7 @@ const palette = palettes[hash % palettes.length];
 >
   <div
     class:list={[
-      "z-10 relative rounded-2xl overflow-hidden mb-5 border border-zinc-800/60 bg-gradient-to-br",
+      "z-10 relative rounded-2xl overflow-hidden mb-5 border border-zinc-800/60 bg-linear-to-br",
       palette.from,
       palette.via,
       palette.to,
@@ -95,7 +95,7 @@ const palette = palettes[hash % palettes.length];
           href={project.liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white hover:bg-blue-500 transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-none"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white hover:bg-blue-500 transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-hidden"
         >
           Live Demo
           <Icon name="fa6-solid:arrow-up-right-from-square" class="w-3.5 h-3.5" />
@@ -106,7 +106,7 @@ const palette = palettes[hash % palettes.length];
           href={project.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-zinc-800 text-zinc-300 border border-zinc-700 hover:bg-zinc-700 hover:text-white transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-none"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-zinc-800 text-zinc-300 border border-zinc-700 hover:bg-zinc-700 hover:text-white transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-hidden"
         >
           <Icon name="fa6-brands:github" class="w-3.5 h-3.5" />
           Source

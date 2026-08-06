@@ -33,7 +33,7 @@ const channels = [
           href={channel.href}
           target={channel.href.startsWith("http") ? "_blank" : undefined}
           rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
-          class="flex items-center gap-3 px-3.5 py-3 rounded-xl bg-zinc-800/80 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:border-zinc-700 hover:text-white transition-all duration-300 focus-visible:ring-2 focus-visible:ring-blue-500 outline-none"
+          class="flex items-center gap-3 px-3.5 py-3 rounded-xl bg-zinc-800/80 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:border-zinc-700 hover:text-white transition-all duration-300 focus-visible:ring-2 focus-visible:ring-blue-500 outline-hidden"
         >
           <Icon name={channel.icon} class="w-5 h-5 text-blue-400 shrink-0" />
           <span class="min-w-0 flex flex-col leading-tight">

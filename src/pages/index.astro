@@ -24,7 +24,7 @@ const groupedProjects = visibleProjects.reduce((acc, project) => {
 
 <Layout title={`${personalInfo.name} | ${personalInfo.role}`} description={personalInfo.description}>
   <Navbar />
-  <main class="pt-28 pb-20">
+  <main class="pt-28 pb-16">
     <BentoGrid>
       <ProfileCard id="home" />
       <SkillsCard id="skills" />
@@ -32,12 +32,12 @@ const groupedProjects = visibleProjects.reduce((acc, project) => {
       <SocialCard />
     </BentoGrid>
 
-    <div id="projects" class="max-w-7xl mx-auto px-5 md:px-6 pb-12">
+    <div id="projects" class="max-w-7xl mx-auto px-5 md:px-6">
       {
         categories.map((category) =>
           groupedProjects[category] ? (
             <section class="pt-12">
-              <div class="flex items-center gap-4 px-2 pb-6">
+              <div class="flex items-center gap-4 px-2 pb-5">
                 <h2 class="text-xl font-bold text-zinc-400 uppercase tracking-[0.15em]">
                   {category}s
                 </h2>

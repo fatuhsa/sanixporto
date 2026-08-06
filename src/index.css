@@ -25,7 +25,7 @@ body {
 
 /* Custom UI/UX Improvements */
 .content-container {
-  @apply max-w-5xl mx-auto px-6 md:px-12 w-full;
+  @apply max-w-7xl mx-auto px-5 md:px-6 w-full;
 }
 
 /* Custom Scrollbar for better aesthetics */
