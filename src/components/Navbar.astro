@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { socialLinks } from "../data/portfolioData";
 
 const navLinks = [
-  { name: "Home", href: "#" },
+  { name: "Home", href: "#home" },
   { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
@@ -16,54 +16,82 @@ const socials = [
 ];
 ---
 
-<!-- Top Bar -->
 <nav
   id="site-nav"
-  class="fixed w-full top-0 left-0 z-50 transition-all duration-300 py-6 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800/50"
+  class="fixed top-0 inset-x-0 z-50 transition-all duration-300 py-5 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/60"
 >
-  <div class="max-w-7xl mx-auto px-5 md:px-6 flex justify-between items-center">
-    <a href="#" class="font-bold text-2xl tracking-tighter hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg outline-hidden px-1 py-0.5">
+  <div class="content-container flex items-center justify-between gap-6">
+    <a
+      href="#home"
+      class="font-display font-bold text-2xl tracking-tighter hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg outline-hidden px-1 py-0.5"
+    >
       SANI<span class="text-zinc-500">X</span>
     </a>
 
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm font-medium text-zinc-400 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md outline-hidden"
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+
+    <div class="hidden md:flex items-center gap-2">
+      {socials.map((social) => (
+        <a
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={social.name}
+          class="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 outline-hidden"
+        >
+          <Icon name={`fa6-brands:${social.name}`} class="w-5 h-5" />
+        </a>
+      ))}
+    </div>
+
     <button
       id="menu-toggle"
-      class="p-3 -mr-2 hover:bg-zinc-800 rounded-xl transition-colors group focus-visible:ring-2 focus-visible:ring-blue-500 outline-hidden"
-      aria-label="Toggle Menu"
+      class="md:hidden p-2 -mr-2 rounded-xl hover:bg-zinc-800 transition-colors text-zinc-300 focus-visible:ring-2 focus-visible:ring-blue-500 outline-hidden"
+      aria-label="Open menu"
     >
-      <Icon name="fa6-solid:bars" class="w-8 h-8 group-hover:text-white text-zinc-400" />
+      <Icon name="fa6-solid:bars" class="w-6 h-6" />
     </button>
   </div>
 </nav>
 
-<!-- Sidebar Overlay -->
+<!-- Mobile Sidebar Overlay -->
 <div
   id="menu-overlay"
-  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-500 opacity-0 pointer-events-none"
+  class="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-500 opacity-0 pointer-events-none"
 />
 
-<!-- Sidebar Panel -->
+<!-- Mobile Sidebar Panel -->
 <aside
   id="menu-panel"
-  class="fixed top-0 right-0 h-full w-full md:w-[400px] bg-zinc-950 z-[70] shadow-2xl border-l border-zinc-800 transition-transform duration-500 ease-in-out translate-x-full"
+  class="md:hidden fixed top-0 right-0 h-full w-[85%] max-w-sm bg-zinc-950 z-[70] shadow-2xl border-l border-zinc-800 transition-transform duration-500 ease-in-out translate-x-full"
 >
   <div class="flex flex-col h-full p-8">
     <div class="flex justify-end">
       <button
         id="menu-close"
-        class="p-2 hover:bg-zinc-800 rounded-xl transition-colors group"
+        class="p-2 hover:bg-zinc-800 rounded-xl transition-colors text-zinc-300"
+        aria-label="Close menu"
       >
-        <Icon name="fa6-solid:xmark" class="w-8 h-8 group-hover:text-white text-zinc-400" />
+        <Icon name="fa6-solid:xmark" class="w-6 h-6" />
       </button>
     </div>
 
     <div class="grow flex flex-col justify-center gap-8">
-      <span class="text-xs uppercase tracking-[0.2em] text-zinc-500 font-semibold">Navigation</span>
+      <span class="kicker">Navigation</span>
       <div class="flex flex-col gap-6">
         {navLinks.map((link) => (
           <a
             href={link.href}
-            class="text-5xl md:text-6xl font-black tracking-tighter hover:text-blue-500 transition-colors"
+            class="text-4xl font-black tracking-tighter hover:text-blue-500 transition-colors font-display"
           >
             {link.name}
           </a>
@@ -72,10 +100,16 @@ const socials = [
     </div>
 
     <div class="pt-8 border-t border-zinc-800">
-      <span class="text-xs uppercase tracking-[0.2em] text-zinc-500 font-semibold block mb-6">Socials</span>
+      <span class="kicker block mb-6">Socials</span>
       <div class="flex gap-6">
         {socials.map((social) => (
-          <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-2xl text-zinc-400 hover:text-white transition-colors">
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-zinc-400 hover:text-white transition-colors"
+            aria-label={social.name}
+          >
             <Icon name={`fa6-brands:${social.name}`} class="w-6 h-6" />
           </a>
         ))}
@@ -92,10 +126,14 @@ const socials = [
   const closer = document.getElementById("menu-close");
 
   const onScroll = () => {
-    const scrolled = window.scrollY > 50;
-    // Compact the navbar on scroll; background stays opaque/frosted at all times
-    nav?.classList.toggle("py-4", scrolled);
-    nav?.classList.toggle("py-6", !scrolled);
+    const scrolled = window.scrollY > 24;
+    if (scrolled) {
+      nav?.classList.add("py-3");
+      nav?.classList.remove("py-5");
+    } else {
+      nav?.classList.add("py-5");
+      nav?.classList.remove("py-3");
+    }
   };
 
   const setMenu = (open) => {

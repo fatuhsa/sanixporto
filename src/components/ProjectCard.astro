@@ -1,119 +1,80 @@
 ---
 import { Icon } from "astro-icon/components";
-import BentoCard from "./BentoCard.astro";
 
 const { project } = Astro.props;
-
-const featured = project.gridSize === "md";
 
 const hasSource = project.sourceUrl && project.sourceUrl !== "#";
 const hasLive = project.liveUrl && project.liveUrl !== "#";
 
-const palettes = [
-  { from: "from-blue-600/40", via: "via-purple-600/30", to: "to-zinc-900/0" },
-  { from: "from-emerald-600/40", via: "via-teal-600/30", to: "to-zinc-900/0" },
-  { from: "from-orange-600/40", via: "via-amber-600/30", to: "to-zinc-900/0" },
-  { from: "from-rose-600/40", via: "via-pink-600/30", to: "to-zinc-900/0" },
-];
+const categoryStyles = {
+  "Game": { badge: "text-violet-300 bg-violet-500/10 border-violet-500/30", icon: "text-violet-400 group-hover:border-violet-500/40" },
+  "Web App": { badge: "text-blue-300 bg-blue-500/10 border-blue-500/30", icon: "text-blue-400 group-hover:border-blue-500/40" },
+  "Tool": { badge: "text-emerald-300 bg-emerald-500/10 border-emerald-500/30", icon: "text-emerald-400 group-hover:border-emerald-500/40" },
+  "Utility": { badge: "text-amber-300 bg-amber-500/10 border-amber-500/30", icon: "text-amber-400 group-hover:border-amber-500/40" },
+};
 
-let hash = 0;
-for (const ch of project.title) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
-const palette = palettes[hash % palettes.length];
+const style = categoryStyles[project.category] || categoryStyles["Tool"];
 ---
 
-<BentoCard
-  class={`flex flex-col justify-between group overflow-hidden relative ${featured ? "md:p-8" : ""}`}
->
-  <div
-    class:list={[
-      "z-10 relative rounded-2xl overflow-hidden mb-5 border border-zinc-800/60 bg-linear-to-br",
-      palette.from,
-      palette.via,
-      palette.to,
-      featured ? "h-44 md:h-52" : "h-36",
-    ]}
-  >
-    <div class="absolute top-0 inset-x-0 flex items-center gap-1.5 px-3 py-2.5 bg-zinc-950/70 border-b border-zinc-800/60">
-      <span class="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-      <span class="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-      <span class="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-      <span class="ml-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500 truncate">
-        {project.title.toLowerCase()}.app
-      </span>
-    </div>
+<article class="group relative flex flex-col rounded-2xl border border-zinc-800/80 bg-zinc-900/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-600/80 hover:bg-zinc-900">
+  <div class="flex items-start justify-between gap-4 mb-5">
     <div
-      class="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+      class:list={[
+        "w-12 h-12 rounded-xl flex items-center justify-center bg-zinc-800/80 border border-zinc-700/60 transition-all duration-300 group-hover:scale-110",
+        style.icon,
+      ]}
     >
-      {project.icon && (
-        <div
-          class:list={[
-            "p-4 md:p-5 rounded-2xl bg-zinc-950/50 border border-zinc-800/60",
-            featured ? "text-blue-400" : "text-zinc-300",
-          ]}
-        >
-          <Icon name={project.icon} class={featured ? "w-10 h-10 md:w-12 md:h-12" : "w-8 h-8"} />
-        </div>
-      )}
+      {project.icon && <Icon name={project.icon} class="w-6 h-6" />}
     </div>
-  </div>
-
-  <div class="z-10 grow">
     <span
       class:list={[
-        "text-[10px] font-bold uppercase tracking-[0.25em] block mb-2",
-        featured ? "text-blue-400/90" : "text-zinc-500",
+        "inline-flex px-2.5 py-1 rounded-full border text-[10px] font-bold uppercase tracking-wider shrink-0",
+        style.badge,
       ]}
     >
       {project.category}
     </span>
-    <h3
-      class:list={[
-        "font-black tracking-tighter text-white mb-2",
-        featured ? "text-2xl md:text-3xl" : "text-xl",
-      ]}
-    >
-      {project.title}
-    </h3>
-    <p class="text-zinc-400 text-sm md:text-base leading-relaxed line-clamp-3 mb-5">
-      {project.description}
-    </p>
   </div>
 
-  <div class="z-10 flex flex-wrap items-center gap-3">
-    <div class="flex flex-wrap gap-2 mr-auto">
-      {project.techStack?.map((tech) => (
-        <span
-          class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider bg-zinc-800/80 text-zinc-400 rounded-full border border-zinc-700/60"
-        >
-          {tech}
-        </span>
-      ))}
-    </div>
-    <div class="flex items-center gap-2">
-      {hasLive && (
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white hover:bg-blue-500 transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-hidden"
-        >
-          Live Demo
-          <Icon name="fa6-solid:arrow-up-right-from-square" class="w-3.5 h-3.5" />
-        </a>
-      )}
-      {hasSource && (
-        <a
-          href={project.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-zinc-800 text-zinc-300 border border-zinc-700 hover:bg-zinc-700 hover:text-white transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-blue-400 outline-hidden"
-        >
-          <Icon name="fa6-brands:github" class="w-3.5 h-3.5" />
-          Source
-        </a>
-      )}
-    </div>
+  <h3 class="text-xl font-bold tracking-tight text-white font-display">
+    {project.title}
+  </h3>
+  <p class="mt-2.5 text-sm text-zinc-400 leading-relaxed line-clamp-3 flex-1 mb-6">
+    {project.description}
+  </p>
+
+  <div class="flex flex-wrap gap-2 mb-6">
+    {project.techStack?.map((tech) => (
+      <span
+        class="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider bg-zinc-800/80 text-zinc-400 rounded-full border border-zinc-700/60"
+      >
+        {tech}
+      </span>
+    ))}
   </div>
 
-  <div class="absolute -bottom-10 -right-10 w-44 h-44 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-colors pointer-events-none" />
-</BentoCard>
+  <div class="flex items-center gap-3 border-t border-zinc-800/80 pt-4">
+    {hasLive && (
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors focus-visible:ring-2 focus-visible:ring-blue-400 rounded-md outline-hidden"
+      >
+        Live demo
+        <Icon name="fa6-solid:arrow-up-right-from-square" class="w-3 h-3" />
+      </a>
+    )}
+    {hasSource && (
+      <a
+        href={project.sourceUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-400 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-zinc-400 rounded-md outline-hidden"
+      >
+        <Icon name="fa6-brands:github" class="w-4 h-4" />
+        Source
+      </a>
+    )}
+  </div>
+</article>

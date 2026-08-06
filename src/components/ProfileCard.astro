@@ -1,38 +1,73 @@
 ---
 import { Icon } from "astro-icon/components";
-import { personalInfo } from "../data/portfolioData";
-import BentoCard from "./BentoCard.astro";
+import { personalInfo, socialLinks } from "../data/portfolioData";
 
-const { id } = Astro.props;
+const socials = [
+  { name: "github", label: "GitHub", url: socialLinks.github },
+  { name: "instagram", label: "Instagram", url: socialLinks.instagram },
+  { name: "telegram", label: "Telegram", url: socialLinks.telegram },
+];
 ---
 
-<BentoCard id={id} class="md:col-span-2 md:row-span-2 p-6 md:p-8 flex flex-col justify-between group overflow-hidden relative">
-  <div class="z-10">
-    <span class="text-blue-500 font-bold tracking-widest uppercase text-xs md:text-sm mb-3 block">
+<section id="home" class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid pointer-events-none" />
+  <div class="absolute -top-48 left-1/2 -translate-x-1/2 w-[720px] h-[540px] bg-blue-600/20 rounded-full blur-[130px] pointer-events-none" />
+  <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+
+  <div class="content-container relative pt-36 md:pt-44 pb-20 md:pb-28 flex flex-col items-center text-center">
+    <span
+      class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-semibold tracking-widest uppercase"
+    >
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
       {personalInfo.role}
     </span>
-    <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-white mb-3">
-      SANIX
+
+    <h1
+      class="mt-7 text-6xl md:text-8xl font-black tracking-tighter leading-none font-display bg-linear-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent"
+    >
+      SANI<span class="text-blue-500">X</span>
     </h1>
-    <p class="text-lg md:text-xl font-medium text-zinc-100 mb-4 max-w-md">
+
+    <p class="mt-5 text-xl md:text-2xl font-medium text-zinc-100">
       Building Digital Experiences
     </p>
-    <p class="text-sm md:text-base text-zinc-400 leading-relaxed max-w-lg">
+
+    <p class="mt-4 max-w-xl text-zinc-400 leading-relaxed">
       {personalInfo.description}
     </p>
-  </div>
 
-  <div class="z-10 flex flex-wrap gap-4 mt-8">
-    <a
-      href="https://drive.google.com/file/d/19WJloNPi9ZwIyCgdgMyUrAbQvY3dlSmq/view?usp=drive_link"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-zinc-200 transition-colors"
-    >
-      <Icon name="fa6-solid:file-arrow-down" class="w-4 h-4" />
-      Download CV
-    </a>
-  </div>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="https://drive.google.com/file/d/19WJloNPi9ZwIyCgdgMyUrAbQvY3dlSmq/view?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-zinc-200 transition-colors focus-visible:ring-2 focus-visible:ring-white outline-hidden"
+      >
+        <Icon name="fa6-solid:file-arrow-down" class="w-4 h-4" />
+        Download CV
+      </a>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm border border-zinc-700 text-zinc-200 hover:border-blue-500 text-blue-400 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 outline-hidden"
+      >
+        Let's talk
+        <Icon name="fa6-solid:arrow-right" class="w-4 h-4" />
+      </a>
+    </div>
 
-  <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-colors" />
-</BentoCard>
+    <div class="mt-12 flex items-center gap-3">
+      {socials.map((social) => (
+        <a
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={social.name}
+          title={social.label}
+          class="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 hover:-translate-y-0.5 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-blue-500 outline-hidden"
+        >
+          <Icon name={`fa6-brands:${social.name}`} class="w-5 h-5" />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
