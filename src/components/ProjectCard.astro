@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+import BentoCard from "./BentoCard.astro";
+
+const { project } = Astro.props;
+const spanClass =
+  project.gridSize === "md"
+    ? "md:col-span-2 md:row-span-1"
+    : "md:col-span-1 md:row-span-1";
+---
+
+<BentoCard class={`${spanClass} flex flex-col justify-between group`}>
+  <div class="flex justify-between items-start mb-4">
+    <div class="p-3 bg-zinc-800 rounded-2xl group-hover:bg-zinc-700 transition-colors">
+      {project.icon && <Icon name={project.icon} class="w-6 h-6" />}
+    </div>
+    <div class="flex gap-3">
+      {
+        project.sourceUrl && project.sourceUrl !== "#" && (
+          <a
+            href={project.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-zinc-500 hover:text-white transition-colors"
+            title="View Source"
+          >
+            <Icon name="fa6-brands:github" class="w-5 h-5" />
+          </a>
+        )
+      }
+      {
+        project.liveUrl && project.liveUrl !== "#" && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-zinc-500 hover:text-white transition-colors"
+            title="Live Demo"
+          >
+            <Icon name="fa6-solid:arrow-up-right-from-square" class="w-[18px] h-[18px]" />
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <div class="flex-grow">
+    <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
+    <p class="text-zinc-400 text-sm line-clamp-3 mb-4">{project.description}</p>
+  </div>
+
+  <div class="flex flex-wrap gap-2 mt-auto">
+    {project.techStack?.map((tech) => (
+      <span
+        class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider bg-zinc-800 text-zinc-400 rounded-md border border-zinc-700/50"
+      >
+        {tech}
+      </span>
+    ))}
+  </div>
+</BentoCard>

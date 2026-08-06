@@ -1,0 +1,76 @@
+---
+import { Icon } from "astro-icon/components";
+import { personalInfo, socialLinks } from "../data/portfolioData";
+
+const currentYear = new Date().getFullYear();
+
+const socials = [
+  { name: "github", label: "GitHub", url: socialLinks.github },
+  { name: "instagram", label: "Instagram", url: socialLinks.instagram },
+  { name: "facebook", label: "Facebook", url: socialLinks.facebook },
+  { name: "youtube", label: "YouTube", url: socialLinks.youtube },
+  { name: "telegram", label: "Telegram", url: socialLinks.telegram },
+];
+---
+
+<footer id="contact" class="bg-zinc-950 py-24 border-t border-zinc-900">
+  <div class="content-container">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-20">
+      <div class="space-y-8">
+        <h4 class="text-5xl md:text-6xl font-bold tracking-tighter leading-none">
+          LET'S<br />
+          <span class="text-zinc-600 text-4xl md:text-5xl">CONNECT</span>
+        </h4>
+        <p class="text-zinc-400 max-w-md text-lg leading-relaxed font-light">
+          Always looking for new challenges and interesting projects to work on.
+          Let's build something exceptional together.
+        </p>
+        <a
+          href={`mailto:${personalInfo.email}`}
+          class="inline-block text-2xl font-light border-b border-zinc-800 hover:border-white transition-all duration-500 pb-2"
+        >
+          {personalInfo.email}
+        </a>
+      </div>
+
+      <div class="flex flex-col md:items-end justify-between py-2">
+        <div class="space-y-6 w-full md:w-auto">
+          <span class="text-zinc-500 font-bold text-[10px] uppercase tracking-[0.3em]">
+            SOCIAL ARCHIVE
+          </span>
+          <div class="grid grid-cols-2 gap-x-12 gap-y-4">
+            {socials.map((social) => (
+              <a
+                href={social.url}
+                class="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name={`fa6-brands:${social.name}`} class="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span class="text-sm font-medium">{social.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-12 md:mt-0 text-left md:text-right">
+          <p class="text-zinc-600 text-[10px] uppercase tracking-[0.2em] mb-2 font-bold">
+            Location
+          </p>
+          <p class="text-zinc-400 font-light">Remote / Indonesia</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-500 text-[10px] uppercase tracking-widest font-bold">
+      <p>
+        &copy; {currentYear} {personalInfo.name}
+      </p>
+      <div class="flex items-center gap-4">
+        <span>Powered by SaniX</span>
+        <div class="w-8 h-px bg-zinc-800"></div>
+        <span>V 2.1.0</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import BentoGrid from "../components/BentoGrid.astro";
+import ProfileCard from "../components/ProfileCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SkillsCard from "../components/SkillsCard.astro";
+import ContactCard from "../components/ContactCard.astro";
+import SocialCard from "../components/SocialCard.astro";
+import { personalInfo, projects } from "../data/portfolioData";
+
+const categories = ["Web App", "Game", "Tool", "Utility"];
+
+const groupedProjects = projects.reduce((acc, project) => {
+  const cat = project.category || "Other";
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(project);
+  return acc;
+}, {});
+---
+
+<Layout title={`${personalInfo.name} | ${personalInfo.role}`} description={personalInfo.description}>
+  <Navbar />
+  <main class="pt-12 pb-20">
+    <BentoGrid>
+      <ProfileCard id="home" />
+      <SkillsCard id="skills" />
+      <ContactCard id="contact" />
+      <SocialCard />
+
+      <div id="projects" class="md:col-span-4"></div>
+      {
+        categories.map((category) =>
+          groupedProjects[category] ? (
+            <div class="md:col-span-4 mt-12 mb-4 contents">
+              <div class="md:col-span-4 flex items-center gap-4 px-2 pt-12 pb-4">
+                <h2 class="text-xl font-bold text-zinc-500 uppercase tracking-[0.3em]">
+                  {category}s
+                </h2>
+                <div class="h-px bg-zinc-800 flex-grow"></div>
+                <span class="text-zinc-600 text-xs font-mono">
+                  {groupedProjects[category].length.toString().padStart(2, "0")}
+                </span>
+              </div>
+              {
+                [...groupedProjects[category]]
+                  .sort((a, b) => {
+                    if (a.gridSize === "md" && b.gridSize !== "md") return -1;
+                    if (a.gridSize !== "md" && b.gridSize === "md") return 1;
+                    return 0;
+                  })
+                  .map((project, index) => (
+                    <ProjectCard project={project} />
+                  ))
+              }
+            </div>
+          ) : null
+        )
+      }
+    </BentoGrid>
+  </main>
+  <Footer />
+</Layout>

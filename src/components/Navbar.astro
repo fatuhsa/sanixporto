@@ -1,0 +1,121 @@
+---
+import { Icon } from "astro-icon/components";
+import { socialLinks } from "../data/portfolioData";
+
+const navLinks = [
+  { name: "Home", href: "#" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
+];
+
+const socials = [
+  { name: "github", url: socialLinks.github },
+  { name: "instagram", url: socialLinks.instagram },
+  { name: "telegram", url: socialLinks.telegram },
+];
+---
+
+<!-- Top Bar -->
+<nav
+  id="site-nav"
+  class="fixed w-full top-0 left-0 z-50 transition-all duration-300 py-6 bg-transparent"
+>
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <a href="#" class="font-bold text-2xl tracking-tighter hover:opacity-80 transition-opacity">
+      SANI<span class="text-zinc-500">X</span>
+    </a>
+
+    <button
+      id="menu-toggle"
+      class="p-2 hover:bg-zinc-800 rounded-xl transition-colors group"
+      aria-label="Toggle Menu"
+    >
+      <Icon name="fa6-solid:bars" class="w-8 h-8 group-hover:text-white text-zinc-400" />
+    </button>
+  </div>
+</nav>
+
+<!-- Sidebar Overlay -->
+<div
+  id="menu-overlay"
+  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-500 opacity-0 pointer-events-none"
+/>
+
+<!-- Sidebar Panel -->
+<aside
+  id="menu-panel"
+  class="fixed top-0 right-0 h-full w-full md:w-[400px] bg-zinc-950 z-[70] shadow-2xl border-l border-zinc-800 transition-transform duration-500 ease-in-out translate-x-full"
+>
+  <div class="flex flex-col h-full p-8">
+    <div class="flex justify-end">
+      <button
+        id="menu-close"
+        class="p-2 hover:bg-zinc-800 rounded-xl transition-colors group"
+      >
+        <Icon name="fa6-solid:xmark" class="w-8 h-8 group-hover:text-white text-zinc-400" />
+      </button>
+    </div>
+
+    <div class="flex-grow flex flex-col justify-center gap-8">
+      <span class="text-xs uppercase tracking-[0.2em] text-zinc-500 font-semibold">Navigation</span>
+      <div class="flex flex-col gap-6">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-5xl md:text-6xl font-black tracking-tighter hover:text-blue-500 transition-colors"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-zinc-800">
+      <span class="text-xs uppercase tracking-[0.2em] text-zinc-500 font-semibold block mb-6">Socials</span>
+      <div class="flex gap-6">
+        {socials.map((social) => (
+          <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-2xl text-zinc-400 hover:text-white transition-colors">
+            <Icon name={`fa6-brands:${social.name}`} class="w-6 h-6" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+  const nav = document.getElementById("site-nav");
+  const overlay = document.getElementById("menu-overlay");
+  const panel = document.getElementById("menu-panel");
+  const toggler = document.getElementById("menu-toggle");
+  const closer = document.getElementById("menu-close");
+
+  const onScroll = () => {
+    const scrolled = window.scrollY > 50;
+    nav?.classList.toggle("glass-effect", scrolled);
+    nav?.classList.toggle("border-b", scrolled);
+    nav?.classList.toggle("border-zinc-800/50", scrolled);
+    nav?.classList.toggle("py-4", scrolled);
+    nav?.classList.toggle("py-6", !scrolled);
+    nav?.classList.toggle("bg-transparent", !scrolled);
+  };
+
+  const setMenu = (open) => {
+    overlay?.classList.toggle("opacity-100", open);
+    overlay?.classList.toggle("pointer-events-auto", open);
+    overlay?.classList.toggle("opacity-0", !open);
+    overlay?.classList.toggle("pointer-events-none", !open);
+    panel?.classList.toggle("translate-x-0", open);
+    panel?.classList.toggle("translate-x-full", !open);
+  };
+
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  toggler?.addEventListener("click", () => setMenu(!panel?.classList.contains("translate-x-0")));
+  closer?.addEventListener("click", () => setMenu(false));
+  overlay?.addEventListener("click", () => setMenu(false));
+  panel?.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
+  });
+</script>

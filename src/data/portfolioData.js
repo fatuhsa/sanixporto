@@ -1,21 +1,3 @@
-import { 
-  SiSvelte, 
-  SiJavascript, 
-  SiPython,
-  SiTailwindcss,
-  SiNodedotjs,
-} from "react-icons/si";
-import { 
-  FaCalculator, 
-  FaGamepad, 
-  FaSkull, 
-  FaCashRegister, 
-  FaBroadcastTower, 
-  FaRobot, 
-  FaSearch,
-  FaReact
-} from "react-icons/fa";
-
 export const personalInfo = {
   name: "Fatuh Sani Ansori",
   role: "Web Developer",
@@ -32,11 +14,11 @@ export const socialLinks = {
 };
 
 export const skills = [
-  { name: "Svelte", icon: SiSvelte },
-  { name: "React", icon: FaReact },
-  { name: "Node.js", icon: SiNodedotjs },
-  { name: "Python", icon: SiPython },
-  { name: "Tailwind", icon: SiTailwindcss },
+  { name: "Svelte", icon: "simple-icons:svelte" },
+  { name: "React", icon: "fa6-brands:react" },
+  { name: "Node.js", icon: "simple-icons:nodedotjs" },
+  { name: "Python", icon: "simple-icons:python" },
+  { name: "Tailwind", icon: "simple-icons:tailwindcss" },
 ];
 
 export const projects = [
@@ -47,7 +29,7 @@ export const projects = [
     techStack: ["TypeScript", "React"],
     liveUrl: "#",
     sourceUrl: "https://github.com/fatuhsa/YGO",
-    icon: FaGamepad,
+    icon: "fa6-solid:gamepad",
     gridSize: "md"
   },
   {
@@ -57,7 +39,7 @@ export const projects = [
     techStack: ["TypeScript", "Canvas"],
     liveUrl: "#",
     sourceUrl: "https://github.com/fatuhsa/DUNGEON-BATTLER",
-    icon: FaSkull,
+    icon: "fa6-solid:skull",
     gridSize: "md"
   },
   {
@@ -67,7 +49,7 @@ export const projects = [
     techStack: ["TypeScript", "React", "Node.js"],
     liveUrl: "#",
     sourceUrl: "https://github.com/fatuhsa/ALL-POS",
-    icon: FaCashRegister,
+    icon: "fa6-solid:cash-register",
     gridSize: "md"
   },
   {
@@ -77,7 +59,7 @@ export const projects = [
     techStack: ["Svelte", "Tailwind"],
     liveUrl: "#",
     sourceUrl: "https://github.com/fatuhsa/SANIX-POKEDEX",
-    icon: SiSvelte,
+    icon: "simple-icons:svelte",
     gridSize: "md"
   },
   {
@@ -87,7 +69,7 @@ export const projects = [
     techStack: ["EJS", "Node.js", "Express"],
     liveUrl: "#",
     sourceUrl: "https://github.com/fatuhsa/STREAMFLOW",
-    icon: FaBroadcastTower,
+    icon: "fa6-solid:tower-broadcast",
     gridSize: "sm"
   },
   {
@@ -97,7 +79,7 @@ export const projects = [
     techStack: ["JavaScript", "Node.js"],
     liveUrl: "#",
     sourceUrl: "https://github.com/fatuhsa/ELAINA-MULTIDEVICE",
-    icon: FaRobot,
+    icon: "fa6-solid:robot",
     gridSize: "sm"
   },
   {
@@ -107,7 +89,7 @@ export const projects = [
     techStack: ["JavaScript", "React"],
     liveUrl: "https://ceki.vercel.app/",
     sourceUrl: "#",
-    icon: FaGamepad,
+    icon: "fa6-solid:gamepad",
     gridSize: "sm"
   },
   {
@@ -117,7 +99,7 @@ export const projects = [
     techStack: ["Python"],
     liveUrl: "#",
     sourceUrl: "https://github.com/fatuhsa/ENDPOINT_FINDER",
-    icon: FaSearch,
+    icon: "fa6-solid:magnifying-glass",
     gridSize: "sm"
   },
   {
@@ -127,7 +109,7 @@ export const projects = [
     techStack: ["JavaScript", "Node.js"],
     liveUrl: "#",
     sourceUrl: "https://github.com/fatuhsa/KASIR-LAUNDRY",
-    icon: SiJavascript,
+    icon: "simple-icons:javascript",
     gridSize: "sm"
   },
   {
@@ -137,7 +119,7 @@ export const projects = [
     techStack: ["JavaScript", "HTML", "CSS"],
     liveUrl: "https://sanix-calculator.vercel.app/",
     sourceUrl: "#",
-    icon: FaCalculator,
+    icon: "fa6-solid:calculator",
     gridSize: "sm"
   }
 ];

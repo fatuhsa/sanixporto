@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon/components";
+import { socialLinks } from "../data/portfolioData";
+import BentoCard from "./BentoCard.astro";
+
+const socials = [
+  { name: "github", url: socialLinks.github },
+  { name: "instagram", url: socialLinks.instagram },
+  { name: "telegram", url: socialLinks.telegram },
+];
+---
+
+<BentoCard class="md:col-span-1 md:row-span-1 flex flex-wrap gap-6 items-center justify-center">
+  {socials.map((social) => (
+    <a
+      href={social.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-3xl hover:text-white transition-colors"
+    >
+      <Icon name={`fa6-brands:${social.name}`} class="w-8 h-8" />
+    </a>
+  ))}
+</BentoCard>

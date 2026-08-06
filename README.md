@@ -1,9 +1,15 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # sanixporto
+
+Bento portfolio site for Fatuh Sani Ansori, built with [Astro](https://astro.build), Tailwind CSS, and astro-icon.
+
+## Commands
+
+| Command         | Action                                      |
+| :-------------- | :------------------------------------------ |
+| `pnpm install`  | Install dependencies                        |
+| `pnpm dev`      | Start local dev server at `localhost:4321`  |
+| `pnpm build`    | Build the production site to `dist/`        |
+| `pnpm preview`  | Preview the production build locally        |
+
+All pages are statically generated. The only client-side JavaScript is the
+mobile sidebar menu in `src/components/Navbar.astro`.
