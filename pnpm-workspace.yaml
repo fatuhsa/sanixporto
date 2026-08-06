@@ -1,2 +1,7 @@
 allowBuilds:
   esbuild: true
+# Force patched versions for Dependabot advisories:
+# rollup GHSA-mw96-cpmx-2vgc / GHSA-gcx4-mw62-g8wm, yaml GHSA-48c2-rrv3-qjmp
+overrides:
+  rollup: ^4.59.0
+  yaml: ^2.8.3
