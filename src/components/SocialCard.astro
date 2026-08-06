@@ -16,9 +16,10 @@ const socials = [
       href={social.url}
       target="_blank"
       rel="noopener noreferrer"
-      class="text-3xl hover:text-white transition-colors"
+      class="p-2.5 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-all focus-visible:ring-2 focus-visible:ring-blue-500 outline-none"
+      aria-label={social.name}
     >
-      <Icon name={`fa6-brands:${social.name}`} class="w-8 h-8" />
+      <Icon name={`fa6-brands:${social.name}`} class="w-7 h-7" />
     </a>
   ))}
 </BentoCard>
