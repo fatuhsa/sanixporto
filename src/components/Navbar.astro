@@ -19,7 +19,7 @@ const socials = [
 <!-- Top Bar -->
 <nav
   id="site-nav"
-  class="fixed w-full top-0 left-0 z-50 transition-all duration-300 py-6 bg-transparent"
+  class="fixed w-full top-0 left-0 z-50 transition-all duration-300 py-6 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800/50"
 >
   <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
     <a href="#" class="font-bold text-2xl tracking-tighter hover:opacity-80 transition-opacity">
@@ -93,12 +93,9 @@ const socials = [
 
   const onScroll = () => {
     const scrolled = window.scrollY > 50;
-    nav?.classList.toggle("glass-effect", scrolled);
-    nav?.classList.toggle("border-b", scrolled);
-    nav?.classList.toggle("border-zinc-800/50", scrolled);
+    // Compact the navbar on scroll; background stays opaque/frosted at all times
     nav?.classList.toggle("py-4", scrolled);
     nav?.classList.toggle("py-6", !scrolled);
-    nav?.classList.toggle("bg-transparent", !scrolled);
   };
 
   const setMenu = (open) => {
