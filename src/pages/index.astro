@@ -12,7 +12,9 @@ import { personalInfo, projects } from "../data/portfolioData";
 
 const categories = ["Web App", "Game", "Tool", "Utility"];
 
-const groupedProjects = projects.reduce((acc, project) => {
+const visibleProjects = projects.filter((project) => project.visible !== false);
+
+const groupedProjects = visibleProjects.reduce((acc, project) => {
   const cat = project.category || "Other";
   if (!acc[cat]) acc[cat] = [];
   acc[cat].push(project);
@@ -28,13 +30,14 @@ const groupedProjects = projects.reduce((acc, project) => {
       <SkillsCard id="skills" />
       <ContactCard id="contact" />
       <SocialCard />
+    </BentoGrid>
 
-      <div id="projects" class="md:col-span-4"></div>
+    <div id="projects" class="max-w-7xl mx-auto px-4">
       {
         categories.map((category) =>
           groupedProjects[category] ? (
-            <div class="md:col-span-4 mt-12 mb-4 contents">
-              <div class="md:col-span-4 flex items-center gap-4 px-2 pt-12 pb-4">
+            <section class="pt-12">
+              <div class="flex items-center gap-4 px-2 pb-6">
                 <h2 class="text-xl font-bold text-zinc-500 uppercase tracking-[0.3em]">
                   {category}s
                 </h2>
@@ -43,22 +46,16 @@ const groupedProjects = projects.reduce((acc, project) => {
                   {groupedProjects[category].length.toString().padStart(2, "0")}
                 </span>
               </div>
-              {
-                [...groupedProjects[category]]
-                  .sort((a, b) => {
-                    if (a.gridSize === "md" && b.gridSize !== "md") return -1;
-                    if (a.gridSize !== "md" && b.gridSize === "md") return 1;
-                    return 0;
-                  })
-                  .map((project, index) => (
-                    <ProjectCard project={project} />
-                  ))
-              }
-            </div>
+              <div class="grid grid-cols-1 gap-4">
+                {groupedProjects[category].map((project) => (
+                  <ProjectCard project={project} />
+                ))}
+              </div>
+            </section>
           ) : null
         )
       }
-    </BentoGrid>
+    </div>
   </main>
   <Footer />
 </Layout>

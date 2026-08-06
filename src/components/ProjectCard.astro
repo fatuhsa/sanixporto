@@ -3,59 +3,103 @@ import { Icon } from "astro-icon/components";
 import BentoCard from "./BentoCard.astro";
 
 const { project } = Astro.props;
-const spanClass =
-  project.gridSize === "md"
-    ? "md:col-span-2 md:row-span-1"
-    : "md:col-span-1 md:row-span-1";
+
+const featured = project.gridSize === "md";
+
+const hasSource = project.sourceUrl && project.sourceUrl !== "#";
+const hasLive = project.liveUrl && project.liveUrl !== "#";
+const primaryUrl = hasLive ? project.liveUrl : project.sourceUrl;
+const primaryLabel = hasLive ? "Live Demo" : "View Source";
+const primaryIcon = hasLive
+  ? "fa6-solid:arrow-up-right-from-square"
+  : "fa6-brands:github";
 ---
 
-<BentoCard class={`${spanClass} flex flex-col justify-between group`}>
-  <div class="flex justify-between items-start mb-4">
-    <div class="p-3 bg-zinc-800 rounded-2xl group-hover:bg-zinc-700 transition-colors">
+<BentoCard
+  class={`flex flex-col justify-between group overflow-hidden relative ${featured ? "md:p-8" : ""}`}
+>
+  <div class="z-10 flex justify-between items-start mb-5">
+    <div
+      class:list={[
+        "p-3 rounded-2xl transition-colors",
+        featured
+          ? "bg-blue-500/15 text-blue-400 group-hover:bg-blue-500/25 group-hover:text-blue-300"
+          : "bg-zinc-800 text-zinc-300 group-hover:bg-zinc-700 group-hover:text-white",
+      ]}
+    >
       {project.icon && <Icon name={project.icon} class="w-6 h-6" />}
     </div>
-    <div class="flex gap-3">
-      {
-        project.sourceUrl && project.sourceUrl !== "#" && (
-          <a
-            href={project.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-zinc-500 hover:text-white transition-colors"
-            title="View Source"
-          >
-            <Icon name="fa6-brands:github" class="w-5 h-5" />
-          </a>
-        )
-      }
-      {
-        project.liveUrl && project.liveUrl !== "#" && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-zinc-500 hover:text-white transition-colors"
-            title="Live Demo"
-          >
-            <Icon name="fa6-solid:arrow-up-right-from-square" class="w-[18px] h-[18px]" />
-          </a>
-        )
-      }
+
+    <div class="flex items-center gap-4">
+      {hasSource && (
+        <a
+          href={project.sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-500 hover:text-white transition-colors"
+          title="View Source"
+        >
+          <Icon name="fa6-brands:github" class="w-5 h-5" />
+        </a>
+      )}
+      {hasLive && (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-500 hover:text-white transition-colors"
+          title="Live Demo"
+        >
+          <Icon name="fa6-solid:arrow-up-right-from-square" class="w-[18px] h-[18px]" />
+        </a>
+      )}
     </div>
   </div>
 
-  <div class="grow">
-    <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-    <p class="text-zinc-400 text-sm line-clamp-3 mb-4">{project.description}</p>
+  <div class="z-10 grow">
+    <span
+      class:list={[
+        "text-[10px] font-bold uppercase tracking-[0.25em] block mb-2",
+        featured ? "text-blue-400/90" : "text-zinc-500",
+      ]}
+    >
+      {project.category}
+    </span>
+    <h3
+      class:list={[
+        "font-black tracking-tighter text-white mb-2",
+        featured ? "text-2xl md:text-3xl" : "text-xl",
+      ]}
+    >
+      {project.title}
+    </h3>
+    <p class="text-zinc-400 text-sm md:text-base leading-relaxed line-clamp-3 mb-5">
+      {project.description}
+    </p>
   </div>
 
-  <div class="flex flex-wrap gap-2 mt-auto">
-    {project.techStack?.map((tech) => (
-      <span
-        class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider bg-zinc-800 text-zinc-400 rounded-md border border-zinc-700/50"
+  <div class="z-10 flex flex-wrap items-center gap-3">
+    <div class="flex flex-wrap gap-2 mr-auto">
+      {project.techStack?.map((tech) => (
+        <span
+          class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider bg-zinc-800/80 text-zinc-400 rounded-full border border-zinc-700/60"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+    {primaryUrl && (
+      <a
+        href={primaryUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white hover:bg-blue-500 transition-colors shrink-0"
       >
-        {tech}
-      </span>
-    ))}
+        {primaryLabel}
+        <Icon name={primaryIcon} class="w-3.5 h-3.5" />
+      </a>
+    )}
   </div>
+
+  <div class="absolute -bottom-10 -right-10 w-44 h-44 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-colors pointer-events-none" />
 </BentoCard>
