@@ -3,10 +3,10 @@ import { Icon } from "astro-icon/components";
 import { socialLinks } from "../data/portfolioData";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
+  { num: "01", name: "Work", href: "#work" },
+  { num: "02", name: "About", href: "#about" },
+  { num: "03", name: "Stack", href: "#skills" },
+  { num: "04", name: "Contact", href: "#contact" },
 ];
 
 const socials = [
@@ -18,99 +18,94 @@ const socials = [
 
 <nav
   id="site-nav"
-  class="fixed top-0 inset-x-0 z-50 transition-all duration-300 py-5 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/60"
+  class="fixed top-0 inset-x-0 z-50 bg-ink/85 backdrop-blur-md border-b border-line"
 >
-  <div class="content-container flex items-center justify-between gap-6">
+  <div class="content-container flex items-center justify-between gap-6 min-h-16">
     <a
       href="#home"
-      class="font-display font-bold text-2xl tracking-tighter hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg outline-hidden px-1 py-0.5"
+      class="font-display text-2xl tracking-tight hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-signal rounded-sm outline-hidden py-2"
+      aria-label="Back to top"
     >
-      SANI<span class="text-zinc-500">X</span>
+      SANI<span class="text-signal">X</span>
     </a>
 
     <div class="hidden md:flex items-center gap-8">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="text-sm font-medium text-zinc-400 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md outline-hidden"
+          class="text-sm font-semibold text-paper/70 hover:text-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal rounded-sm outline-hidden py-3"
         >
+          <span class="text-signal text-[10px] font-bold mr-1.5">{link.num}</span>
           {link.name}
-        </a>
-      ))}
-    </div>
-
-    <div class="hidden md:flex items-center gap-2">
-      {socials.map((social) => (
-        <a
-          href={social.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={social.name}
-          class="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 outline-hidden"
-        >
-          <Icon name={`fa6-brands:${social.name}`} class="w-5 h-5" />
         </a>
       ))}
     </div>
 
     <button
       id="menu-toggle"
-      class="md:hidden p-2 -mr-2 rounded-xl hover:bg-zinc-800 transition-colors text-zinc-300 focus-visible:ring-2 focus-visible:ring-blue-500 outline-hidden"
+      class="md:hidden flex items-center justify-center w-11 h-11 border border-line text-paper hover:border-signal hover:text-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal outline-hidden"
       aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="menu-panel"
     >
-      <Icon name="fa6-solid:bars" class="w-6 h-6" />
+      <Icon name="fa6-solid:bars" class="w-5 h-5" />
     </button>
   </div>
 </nav>
 
-<!-- Mobile Sidebar Overlay -->
+<!-- Fullscreen menu overlay -->
 <div
   id="menu-overlay"
-  class="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-500 opacity-0 pointer-events-none"
+  class="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-200 opacity-0 pointer-events-none"
+  aria-hidden="true"
 />
 
-<!-- Mobile Sidebar Panel -->
 <aside
   id="menu-panel"
-  class="md:hidden fixed top-0 right-0 h-full w-[85%] max-w-sm bg-zinc-950 z-[70] shadow-2xl border-l border-zinc-800 transition-transform duration-500 ease-in-out translate-x-full"
+  class="md:hidden fixed top-0 inset-x-0 h-full bg-ink z-[70] border-b border-signal transition-transform duration-300 ease-[cubic-bezier(0.2,1.4,0.3,1)] -translate-y-full"
+  aria-hidden="true"
 >
-  <div class="flex flex-col h-full p-8">
-    <div class="flex justify-end">
+  <div class="flex flex-col h-full px-5 py-4">
+    <div class="flex items-center justify-between">
+      <span class="font-display text-2xl tracking-tight">
+        SANI<span class="text-signal">X</span>
+      </span>
       <button
         id="menu-close"
-        class="p-2 hover:bg-zinc-800 rounded-xl transition-colors text-zinc-300"
+        class="flex items-center justify-center w-11 h-11 border border-line text-paper hover:border-signal hover:text-signal transition-colors"
         aria-label="Close menu"
       >
-        <Icon name="fa6-solid:xmark" class="w-6 h-6" />
+        <Icon name="fa6-solid:xmark" class="w-5 h-5" />
       </button>
     </div>
 
-    <div class="grow flex flex-col justify-center gap-8">
-      <span class="kicker">Navigation</span>
-      <div class="flex flex-col gap-6">
+    <div class="grow flex flex-col justify-center">
+      <span class="kicker mb-8">Navigation</span>
+      <nav class="flex flex-col">
         {navLinks.map((link) => (
           <a
             href={link.href}
-            class="text-4xl font-black tracking-tighter hover:text-blue-500 transition-colors font-display"
+            class="group flex items-baseline gap-4 border-b border-line py-5 font-display text-5xl tracking-tight text-paper hover:text-signal transition-colors"
           >
+            <span class="text-sm font-bold text-signal">{link.num}</span>
             {link.name}
           </a>
         ))}
-      </div>
+      </nav>
     </div>
 
-    <div class="pt-8 border-t border-zinc-800">
-      <span class="kicker block mb-6">Socials</span>
-      <div class="flex gap-6">
+    <div class="pt-6 pb-2">
+      <span class="kicker block mb-4">Socials</span>
+      <div class="flex gap-3">
         {socials.map((social) => (
           <a
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-zinc-400 hover:text-white transition-colors"
+            class="flex items-center justify-center w-11 h-11 border border-line text-paper/80 hover:text-signal hover:border-signal transition-colors"
             aria-label={social.name}
           >
-            <Icon name={`fa6-brands:${social.name}`} class="w-6 h-6" />
+            <Icon name={`fa6-brands:${social.name}`} class="w-5 h-5" />
           </a>
         ))}
       </div>
@@ -119,38 +114,31 @@ const socials = [
 </aside>
 
 <script>
-  const nav = document.getElementById("site-nav");
   const overlay = document.getElementById("menu-overlay");
   const panel = document.getElementById("menu-panel");
   const toggler = document.getElementById("menu-toggle");
   const closer = document.getElementById("menu-close");
 
-  const onScroll = () => {
-    const scrolled = window.scrollY > 24;
-    if (scrolled) {
-      nav?.classList.add("py-3");
-      nav?.classList.remove("py-5");
-    } else {
-      nav?.classList.add("py-5");
-      nav?.classList.remove("py-3");
-    }
-  };
-
   const setMenu = (open) => {
+    toggler?.setAttribute("aria-expanded", String(open));
+    toggler?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     overlay?.classList.toggle("opacity-100", open);
-    overlay?.classList.toggle("pointer-events-auto", open);
     overlay?.classList.toggle("opacity-0", !open);
+    overlay?.classList.toggle("pointer-events-auto", open);
     overlay?.classList.toggle("pointer-events-none", !open);
-    panel?.classList.toggle("translate-x-0", open);
-    panel?.classList.toggle("translate-x-full", !open);
+    panel?.classList.toggle("-translate-y-full", !open);
+    panel?.classList.toggle("translate-y-0", open);
+    panel?.setAttribute("aria-hidden", String(!open));
+    document.body.style.overflow = open ? "hidden" : "";
   };
 
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-  toggler?.addEventListener("click", () => setMenu(!panel?.classList.contains("translate-x-0")));
+  toggler?.addEventListener("click", () => setMenu(true));
   closer?.addEventListener("click", () => setMenu(false));
   overlay?.addEventListener("click", () => setMenu(false));
   panel?.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", () => setMenu(false));
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenu(false);
   });
 </script>

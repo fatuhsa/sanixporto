@@ -1,9 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Permanent+Marker&display=swap');
 @import "tailwindcss";
 
 @theme {
+  --font-display: "Anton", "Arial Narrow", ui-sans-serif, sans-serif;
+  --font-accent: "Permanent Marker", cursive;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0d0d0d;
+  --color-paper: #f2f0eb;
+  --color-signal: #f7df1e;
+  --color-line: #2a2a2a;
+
+  --shadow-block: 6px 6px 0 0 var(--color-line);
+  --shadow-block-lg: 10px 10px 0 0 var(--color-line);
 }
 
 :root {
@@ -16,38 +25,62 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: #050507;
-  color: white;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 #home,
-#projects,
+#work,
+#about,
 #skills,
 #contact {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 88px;
 }
 
 .content-container {
   @apply mx-auto w-full max-w-6xl px-5 md:px-8;
 }
 
-/* Subtle blueprint grid used behind the hero */
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 55%, transparent 100%);
+/* Editorial section label: "01 / WORK" */
+.kicker {
+  @apply text-xs font-bold uppercase tracking-[0.35em] text-signal;
 }
 
-/* Section header kicker label */
-.kicker {
-  @apply text-xs font-bold uppercase tracking-[0.3em] text-blue-500;
+/* Signature element: skewed yellow slash */
+.blade-cut {
+  @apply block h-1.5 w-24 bg-signal;
+  transform: skewX(-18deg);
+}
+
+/* Hard-edged block shadow, no blur */
+.hard-card {
+  box-shadow: var(--shadow-block);
+}
+
+/* Diagonal-framed media block (about section) */
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+}
+
+/* Scroll reveal - light & fast */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.28s ease-out,
+    transform 0.28s cubic-bezier(0.2, 1.1, 0.3, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
 }
 
 ::selection {
-  background: rgb(59 130 246 / 0.4);
+  background: var(--color-signal);
+  color: var(--color-ink);
 }
 
 ::-webkit-scrollbar {
@@ -55,15 +88,32 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050507;
+  background: var(--color-ink);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #26262b;
-  border-radius: 999px;
-  border: 2px solid #050507;
+  background: var(--color-line);
+  border: 2px solid var(--color-ink);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

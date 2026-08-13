@@ -1,6 +1,8 @@
 # sanixporto
 
-Bento portfolio site for Fatuh Sani Ansori, built with [Astro](https://astro.build), Tailwind CSS, and astro-icon.
+High-energy editorial portfolio for Fatuh Sani Ansori, built with [Astro](https://astro.build), Tailwind CSS, and astro-icon.
+
+Design language: magazine-style single-column layout, condensed ultra-bold display type (Anton), brush accent (Permanent Marker), hard-edged block shadows, and a single signature color (acid yellow) — mobile-first.
 
 ## Commands
 
@@ -12,4 +14,5 @@ Bento portfolio site for Fatuh Sani Ansori, built with [Astro](https://astro.bui
 | `pnpm preview`  | Preview the production build locally        |
 
 All pages are statically generated. The only client-side JavaScript is the
-mobile sidebar menu in `src/components/Navbar.astro`.
+fullscreen mobile menu overlay and the scroll-reveal observer (disabled
+under `prefers-reduced-motion`).
