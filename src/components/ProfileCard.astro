@@ -9,8 +9,8 @@ const socials = [
 ];
 ---
 
-<section id="home" class="relative pt-16 md:pt-40 pb-12 md:pb-24">
-  <div class="content-container">
+<section id="home" class="relative flex flex-col min-h-svh pt-16 md:pt-24 pb-6 md:pb-10">
+  <div class="content-container grow flex flex-col justify-center">
     <!-- Badge with breathing room above the headline -->
     <div class="reveal relative z-10 mb-3 md:mb-5">
       <span
@@ -102,13 +102,15 @@ const socials = [
         </span>
       </div>
     </div>
+  </div>
 
+  <div class="content-container">
     <a
       href="#work"
-      class="mt-8 md:mt-14 inline-flex flex-col items-center gap-2 text-[10px] font-bold uppercase tracking-[0.35em] text-paper/40 hover:text-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal outline-hidden"
+      class="mt-6 md:mt-8 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.35em] text-paper/40 hover:text-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal outline-hidden"
     >
-      Scroll
       <Icon name="fa6-solid:arrow-down" class="w-4 h-4 animate-bounce" />
+      Next: work
     </a>
   </div>
 </section>
