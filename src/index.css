@@ -48,10 +48,16 @@ body {
   @apply text-xs font-bold uppercase tracking-[0.35em] text-signal;
 }
 
-/* Signature element: skewed yellow slash */
-.blade-cut {
-  @apply block h-1.5 w-24 bg-signal;
-  transform: skewX(-18deg);
+/* Parallelogram section-label chip (literal "01 / WORK" system) */
+.kicker-chip {
+  @apply inline-flex items-center gap-2 px-4 py-1.5 bg-signal text-ink text-xs font-bold uppercase tracking-[0.25em];
+  clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+
+/* Signature element: skewed yellow blade - full-width section divider */
+.blade-divider {
+  @apply block h-[3px] w-full bg-signal;
+  transform: skewY(-1.5deg);
 }
 
 /* Hard-edged block shadow, no blur */

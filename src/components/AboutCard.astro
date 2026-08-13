@@ -2,20 +2,23 @@
 import { personalInfo } from "../data/portfolioData";
 ---
 
-<section id="about" class="py-16 md:py-24 border-t border-line">
+<section id="about" class="py-16 md:py-24">
   <div class="content-container">
     <div class="reveal mb-10 md:mb-14">
-      <span class="kicker">02 / About</span>
-      <h2 class="mt-3 font-display text-4xl md:text-5xl tracking-tight text-paper uppercase -skew-x-3">
+      <span class="kicker-chip">02 / About</span>
+      <h2 class="mt-4 font-display text-4xl md:text-5xl tracking-tight text-paper uppercase -skew-x-3">
         Who's behind it
       </h2>
     </div>
 
     <div class="grid gap-8 md:grid-cols-2 md:gap-12 items-start">
-      <div class="reveal clip-diagonal bg-paper p-10 md:p-14 flex items-center justify-center select-none">
-        <span class="font-display text-7xl md:text-8xl tracking-tight text-ink uppercase">
-          SX
-        </span>
+      <div class="reveal relative">
+        <span class="absolute -top-3 -left-3 w-full h-full bg-signal clip-diagonal" />
+        <div class="relative clip-diagonal bg-paper p-10 md:p-14 flex items-center justify-center select-none">
+          <span class="font-display text-7xl md:text-8xl tracking-tight text-ink uppercase">
+            SX
+          </span>
+        </div>
       </div>
 
       <div class="reveal">
