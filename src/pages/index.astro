@@ -171,6 +171,79 @@ const visibleProjects = projects.filter((project) => project.visible !== false);
       };
       prev?.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: prefersReduced ? "auto" : "smooth" }));
       next?.addEventListener("click", () => track.scrollBy({ left: step(), behavior: prefersReduced ? "auto" : "smooth" }));
+
+      // Autoscroll: one slide per second, resumes 3s after user interaction stops
+      let autoplay = null;
+      let resumeTimer = null;
+      let slideIndex = 0;
+      let autoScrolling = false;
+
+      const findActiveIndex = () => {
+        const trackLeft = track.getBoundingClientRect().left;
+        const center = trackLeft + track.clientWidth / 2;
+        let active = 0;
+        let best = Infinity;
+        slides.forEach((slide, i) => {
+          const rect = slide.getBoundingClientRect();
+          const dist = Math.abs(rect.left + rect.width / 2 - center);
+          if (dist < best) {
+            best = dist;
+            active = i;
+          }
+        });
+        return active;
+      };
+
+      const goTo = (i) => {
+        slideIndex = (i + total) % total;
+        const slide = slides[slideIndex];
+        if (slide) {
+          autoScrolling = true;
+          track.scrollTo({
+            left: slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2,
+            behavior: prefersReduced ? "auto" : "smooth",
+          });
+          window.setTimeout(() => { autoScrolling = false; }, 600);
+        }
+      };
+
+      const startAutoplay = () => {
+        if (prefersReduced || autoplay) return;
+        autoplay = setInterval(() => goTo(slideIndex + 1), 1000);
+      };
+      const stopAutoplay = () => {
+        if (autoplay) {
+          clearInterval(autoplay);
+          autoplay = null;
+        }
+      };
+      const scheduleResume = () => {
+        if (prefersReduced) return;
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = window.setTimeout(() => {
+          slideIndex = findActiveIndex();
+          startAutoplay();
+        }, 3000);
+      };
+
+      const onUserInteract = () => {
+        if (autoScrolling) return;
+        stopAutoplay();
+        scheduleResume();
+      };
+
+      track.addEventListener("scroll", onUserInteract, { passive: true });
+      prev?.addEventListener("click", () => { stopAutoplay(); goTo(slideIndex - 1); scheduleResume(); });
+      next?.addEventListener("click", () => { stopAutoplay(); goTo(slideIndex + 1); scheduleResume(); });
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          stopAutoplay();
+          if (resumeTimer) clearTimeout(resumeTimer);
+        } else {
+          scheduleResume();
+        }
+      });
+      startAutoplay();
     }
   </script>
 </Layout>
