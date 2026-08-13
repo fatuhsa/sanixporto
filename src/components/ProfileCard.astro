@@ -9,7 +9,7 @@ const socials = [
 ];
 ---
 
-<section id="home" class="relative pt-32 md:pt-40 pb-16 md:pb-24">
+<section id="home" class="relative pt-24 md:pt-40 pb-16 md:pb-24">
   <div class="content-container">
     <div class="reveal">
       <span
@@ -21,7 +21,7 @@ const socials = [
     </div>
 
     <h1
-      class="reveal mt-6 font-display text-[40px] leading-[0.95] tracking-tight text-paper uppercase"
+      class="reveal mt-4 md:mt-6 font-display text-[40px] leading-[0.95] tracking-tight text-paper uppercase"
     >
       <span class="block -skew-x-6">Sani</span>
       <span class="block -skew-x-6 mt-1">
@@ -29,20 +29,20 @@ const socials = [
       </span>
     </h1>
 
-    <div class="reveal mt-6 flex items-center gap-3">
+    <div class="reveal mt-4 md:mt-6 flex items-center gap-3">
       <span class="blade-cut" />
       <span class="text-sm font-bold uppercase tracking-[0.25em] text-paper/60">
         Web dev &amp; game tinkerer
       </span>
     </div>
 
-    <p class="reveal mt-6 max-w-md text-base leading-[1.55] text-paper/70">
+    <p class="reveal mt-4 md:mt-6 max-w-md text-base leading-[1.55] text-paper/70">
       I build games, tools, and web things for fun — mostly
       <span class="font-accent text-signal">late at night</span>. This is where I
       keep the stuff I'm proud of.
     </p>
 
-    <div class="reveal mt-8 flex flex-wrap items-center gap-3">
+    <div class="reveal mt-6 md:mt-8 flex flex-wrap items-center gap-3">
       <a
         href="https://drive.google.com/file/d/19WJloNPi9ZwIyCgdgMyUrAbQvY3dlSmq/view?usp=drive_link"
         target="_blank"
@@ -60,7 +60,7 @@ const socials = [
       </a>
     </div>
 
-    <div class="reveal mt-10 flex items-center gap-3">
+    <div class="reveal mt-8 md:mt-10 flex items-center gap-3">
       {socials.map((social) => (
         <a
           href={social.url}
@@ -77,7 +77,7 @@ const socials = [
 
     <a
       href="#work"
-      class="mt-14 inline-flex flex-col items-center gap-2 text-[10px] font-bold uppercase tracking-[0.35em] text-paper/40 hover:text-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal outline-hidden"
+      class="mt-10 md:mt-14 inline-flex flex-col items-center gap-2 text-[10px] font-bold uppercase tracking-[0.35em] text-paper/40 hover:text-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal outline-hidden"
     >
       Scroll
       <Icon name="fa6-solid:arrow-down" class="w-4 h-4 animate-bounce" />
