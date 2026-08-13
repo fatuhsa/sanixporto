@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { skills } from "../data/portfolioData";
 ---
 
-<section id="skills" class="py-20 md:py-28 border-t border-line">
+<section id="skills" class="py-16 md:py-24 border-t border-line">
   <div class="content-container">
     <div class="reveal mb-10 md:mb-14">
       <span class="kicker">03 / Stack</span>
@@ -14,7 +14,7 @@ import { skills } from "../data/portfolioData";
 
     <ol class="grid grid-cols-2 gap-3 md:gap-4">
       {skills.map((skill, i) => (
-        <li class="reveal flex items-center gap-3 border-2 border-paper/25 p-4 hover:border-signal hover:bg-paper/5 transition-colors">
+        <li class="reveal flex items-center gap-3 border-2 border-paper/25 p-4 hover:border-signal hover:bg-paper/5 transition-colors last:col-span-2">
           <span class="font-display text-sm text-signal leading-none shrink-0">
             {String(i + 1).padStart(2, "0")}
           </span>

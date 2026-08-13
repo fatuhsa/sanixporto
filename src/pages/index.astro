@@ -18,7 +18,7 @@ const visibleProjects = projects.filter((project) => project.visible !== false);
   <main>
     <ProfileCard />
 
-    <section id="work" class="py-20 md:py-28 border-t border-line">
+    <section id="work" class="py-16 md:py-24 border-t border-line">
       <div class="content-container">
         <div class="reveal mb-10 md:mb-14 flex items-end justify-between gap-6 flex-wrap">
           <div>
@@ -41,7 +41,7 @@ const visibleProjects = projects.filter((project) => project.visible !== false);
           </a>
         </div>
 
-        <div class="flex flex-col gap-6 md:gap-8">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
           {visibleProjects.map((project, i) => (
             <ProjectCard project={project} index={i} />
           ))}
