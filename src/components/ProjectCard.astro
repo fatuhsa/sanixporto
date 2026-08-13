@@ -12,16 +12,16 @@ const offset = index % 2 === 0 ? "md:-translate-y-2" : "md:translate-y-2";
 
 <article
   class:list={[
-    "carousel-slide group relative shrink-0 w-[85vw] max-w-md snap-center scroll-ml-5 md:scroll-ml-8 transition-all duration-300",
+    "carousel-slide group relative shrink-0 w-[75vw] max-w-md snap-center scroll-ml-5 md:scroll-ml-8 transition-all duration-300",
     offset,
   ]}
   data-slide
 >
-  <div class="relative h-full border-[3px] border-paper/25 bg-ink p-5 md:p-6 hover:border-signal focus-within:border-signal transition-colors">
+  <div class="relative h-full border-[3px] border-paper/25 bg-ink p-4 md:p-6 hover:border-signal focus-within:border-signal transition-colors">
     <!-- Giant outlined background number -->
     <span
       aria-hidden="true"
-      class="absolute -top-2 right-2 font-display text-[110px] leading-none text-transparent pointer-events-none select-none"
+      class="absolute -top-1 right-2 font-display text-[72px] md:text-[110px] leading-none text-transparent pointer-events-none select-none"
       style="-webkit-text-stroke: 2px rgb(242 240 235 / 0.14)"
       data-parallax
     >
@@ -29,30 +29,30 @@ const offset = index % 2 === 0 ? "md:-translate-y-2" : "md:translate-y-2";
     </span>
 
     <!-- Preview panel: diagonal clip + thick border -->
-    <div class="relative h-36 md:h-44">
+    <div class="relative h-24 md:h-44">
       <span
         aria-hidden="true"
         class="absolute inset-0 translate-x-2 translate-y-2 bg-signal/70 clip-slide"
       />
       <div class="relative h-full clip-slide border-[3px] border-paper/30 bg-ink flex items-center justify-center">
-        <Icon name={project.icon} class="w-12 h-12 md:w-14 md:h-14 text-signal" />
+        <Icon name={project.icon} class="w-8 h-8 md:w-14 md:h-14 text-signal" />
       </div>
     </div>
 
     <!-- Category badge: diagonal cut, not pill -->
-    <span class="mt-5 inline-block -skew-x-6 bg-signal text-ink px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
+    <span class="mt-4 inline-block -skew-x-6 bg-signal text-ink px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
       {project.category}
     </span>
 
-    <h3 class="mt-3 font-display text-3xl md:text-4xl tracking-tight text-paper uppercase -skew-x-6 leading-[0.9]">
+    <h3 class="mt-2.5 font-display text-2xl md:text-4xl tracking-tight text-paper uppercase -skew-x-6 leading-[0.9]">
       {project.title}
     </h3>
 
-    <p class="mt-3 text-base leading-[1.5] text-paper/70 line-clamp-2">
+    <p class="mt-2.5 text-sm md:text-base leading-[1.5] text-paper/70 line-clamp-2">
       {project.description}
     </p>
 
-    <div class="mt-4 flex flex-wrap gap-2">
+    <div class="mt-3 flex flex-wrap gap-2">
       {project.techStack?.map((tech) => (
         <span class="px-2 py-1 text-[10px] font-semibold uppercase tracking-wider border border-line text-paper/50">
           {tech}
@@ -60,7 +60,7 @@ const offset = index % 2 === 0 ? "md:-translate-y-2" : "md:translate-y-2";
       ))}
     </div>
 
-    <div class="mt-5 flex items-center justify-between gap-3 border-t-2 border-line pt-4">
+    <div class="mt-4 flex items-center justify-between gap-3 border-t-2 border-line pt-3.5">
       <div class="flex items-center gap-4">
         {hasLive && (
           <a
