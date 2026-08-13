@@ -70,6 +70,25 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
 }
 
+/* Carousel: editorial magazine spread */
+.clip-slide {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track {
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
 /* Scroll reveal - light & fast */
 .reveal {
   opacity: 0;

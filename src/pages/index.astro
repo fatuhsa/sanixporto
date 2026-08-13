@@ -29,7 +29,7 @@ const visibleProjects = projects.filter((project) => project.visible !== false);
               Selected projects
             </h2>
             <p class="mt-4 max-w-md text-base leading-[1.55] text-paper/60">
-              Tap a card to open it. The rest lives on GitHub.
+              Swipe through the spreads. Tap View to open.
             </p>
           </div>
           <a
@@ -43,7 +43,43 @@ const visibleProjects = projects.filter((project) => project.visible !== false);
           </a>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
+        <!-- Progress indicator: counter + thin line, not dots -->
+        <div class="reveal mb-5 flex items-center gap-4">
+          <span
+            id="carousel-count"
+            class="font-display text-xl text-signal leading-none whitespace-nowrap"
+          >
+            01 <span class="text-paper/40">/ {String(visibleProjects.length).padStart(2, "0")}</span>
+          </span>
+          <div class="relative grow h-[3px] bg-line">
+            <div
+              id="carousel-progress"
+              class="absolute inset-y-0 left-0 bg-signal transition-[width] duration-300"
+              style="width: calc(100% / 6)"
+            />
+          </div>
+          <div class="hidden sm:flex items-center gap-2">
+            <button
+              id="carousel-prev"
+              class="flex items-center justify-center w-11 h-11 border-2 border-line text-paper/70 hover:text-signal hover:border-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal outline-hidden"
+              aria-label="Previous project"
+            >
+              <Icon name="fa6-solid:arrow-left" class="w-4 h-4" />
+            </button>
+            <button
+              id="carousel-next"
+              class="flex items-center justify-center w-11 h-11 border-2 border-line text-paper/70 hover:text-signal hover:border-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal outline-hidden"
+              aria-label="Next project"
+            >
+              <Icon name="fa6-solid:arrow-right" class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="carousel-track"
+          class="reveal carousel-track no-scrollbar flex items-center gap-5 overflow-x-auto pb-2 -mx-5 md:-mx-8 px-5 md:px-8"
+        >
           {visibleProjects.map((project, i) => (
             <ProjectCard project={project} index={i} />
           ))}
@@ -86,6 +122,55 @@ const visibleProjects = projects.filter((project) => project.visible !== false);
       document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     } else {
       document.querySelectorAll(".reveal").forEach((el) => el.classList.add("revealed"));
+    }
+
+    // ---- Editorial carousel ----
+    const track = document.getElementById("carousel-track");
+    const countEl = document.getElementById("carousel-count");
+    const progressEl = document.getElementById("carousel-progress");
+    if (track && countEl && progressEl) {
+      const slides = Array.from(track.querySelectorAll("[data-slide]"));
+      const total = slides.length;
+
+      const update = () => {
+        const trackLeft = track.getBoundingClientRect().left;
+        const center = trackLeft + track.clientWidth / 2;
+        let active = 0;
+        let best = Infinity;
+
+        slides.forEach((slide, i) => {
+          const rect = slide.getBoundingClientRect();
+          const slideCenter = rect.left + rect.width / 2;
+          const dist = Math.abs(slideCenter - center);
+          if (dist < best) {
+            best = dist;
+            active = i;
+          }
+
+          // parallax: big number drifts slower than the card
+          const num = slide.querySelector("[data-parallax]");
+          if (num) {
+            const drift = (slideCenter - center) * -0.25;
+            num.style.transform = `translateX(${drift}px)`;
+          }
+        });
+
+        countEl.innerHTML = `${String(active + 1).padStart(2, "0")} <span class="text-paper/40">/ ${String(total).padStart(2, "0")}</span>`;
+        progressEl.style.width = `${((active + 1) / total) * 100}%`;
+      };
+
+      track.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+
+      const prev = document.getElementById("carousel-prev");
+      const next = document.getElementById("carousel-next");
+      const step = () => {
+        const slide = slides[0];
+        return slide ? slide.getBoundingClientRect().width + 20 : 300;
+      };
+      prev?.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: prefersReduced ? "auto" : "smooth" }));
+      next?.addEventListener("click", () => track.scrollBy({ left: step(), behavior: prefersReduced ? "auto" : "smooth" }));
     }
   </script>
 </Layout>
