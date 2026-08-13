@@ -51,7 +51,7 @@ body {
 /* Parallelogram section-label chip (literal "01 / WORK" system) */
 .kicker-chip {
   @apply inline-flex items-center gap-2 px-4 py-1.5 bg-signal text-ink text-xs font-bold uppercase tracking-[0.25em];
-  clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transform: skewX(-6deg);
 }
 
 /* Signature element: skewed yellow blade - full-width section divider */
