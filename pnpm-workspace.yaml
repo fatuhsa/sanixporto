@@ -2,7 +2,9 @@ allowBuilds:
   esbuild: true
   '@tailwindcss/oxide': true
 # Force patched versions for Dependabot advisories:
-# rollup GHSA-mw96-cpmx-2vgc / GHSA-gcx4-mw62-g8wm, yaml GHSA-48c2-rrv3-qjmp
+# rollup GHSA-mw96-cpmx-2vgc / GHSA-gcx4-mw62-g8wm, yaml GHSA-48c2-rrv3-qjmp,
+# extract-zip GHSA-jmr9-qjv8-65gv (no patched version; @iconify/tools v5 drops it)
 overrides:
   rollup: ^4.59.0
   yaml: ^2.8.3
+  '@iconify/tools': 5.0.12
