@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import { personalInfo } from "../data/portfolioData";
 ---
 
@@ -34,6 +35,16 @@ import { personalInfo } from "../data/portfolioData";
           Right now I'm into Go, Kotlin, and anything that ships fast.
         </p>
       </div>
+    </div>
+
+    <div class="mt-12 md:mt-16 border-t-2 border-line pt-6">
+      <a
+        href="#skills"
+        class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.35em] text-paper/40 hover:text-signal transition-colors focus-visible:ring-2 focus-visible:ring-signal outline-hidden"
+      >
+        Next: stack
+        <Icon name="fa6-solid:arrow-down" class="w-4 h-4 animate-bounce" />
+      </a>
     </div>
   </div>
 </section>
